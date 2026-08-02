@@ -1,0 +1,18 @@
+{
+  "schema_version": "final_stabilization_replay.v1",
+  "run_id": "RUN-AC2AF367-58C",
+  "as_of_date": "2026-07-30",
+  "official_policy_source": {
+    "source_id": "SRC-RUN-AC-GANGNAM-NOTICE",
+    "revision_id": "REV-RUN-AC-GANGNAM-2026",
+    "title": "2026 Gangnam SME loan interest support program",
+    "body_text": "2026 Gangnam SME loan interest support program. Applications are accepted from 2026-08-01 to 2026-12-31. Support limit: KRW 50,000,000. Interest rate discount: 2 percentage points. Eligible businesses: Gangnam small businesses."
+  },
+  "general_policy_name": "Gangnam SME loan interest support program",
+  "expected": {
+    "merged_policy_count": 1,
+    "event_candidate_count": 2,
+    "rejected_candidate_count": 1,
+    "accepted_candidate_count": 1
+  }
+}

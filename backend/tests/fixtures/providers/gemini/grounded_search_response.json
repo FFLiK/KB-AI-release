@@ -1,0 +1,24 @@
+{
+  "candidates": [
+    {
+      "content": {"role": "model", "parts": [{"text": "공식 출처를 확인했습니다."}]},
+      "groundingMetadata": {
+        "webSearchQueries": ["한국은행 기준금리 2026 7월 공식"],
+        "groundingChunks": [
+          {"web": {"uri": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/sample-1", "title": "한국은행"}},
+          {"web": {"uri": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/sample-2", "title": "기획재정부"}},
+          {"web": {"uri": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/sample-1", "title": "중복"}}
+        ],
+        "groundingSupports": [
+          {"segment": {"startIndex": 0, "endIndex": 8}, "groundingChunkIndices": [0]}
+        ]
+      }
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 42,
+    "candidatesTokenCount": 18,
+    "cachedContentTokenCount": 3,
+    "totalTokenCount": 63
+  }
+}

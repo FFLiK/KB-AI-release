@@ -1,0 +1,9 @@
+version: source_authorities.v1
+authorities:
+  visitgangnam.net:
+    source_type: OFFICIAL_LOCAL_GOV
+    trust_level: OFFICIAL_TRUSTED
+    source_role: LOCAL_GOVERNMENT
+    governing_authority: gangnam.go.kr
+    relationship: OFFICIAL_TOURISM_PORTAL
+    provenance_url: https://www.gangnam.go.kr/

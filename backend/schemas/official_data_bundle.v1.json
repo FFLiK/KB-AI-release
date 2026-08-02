@@ -1,0 +1,729 @@
+{
+  "$defs": {
+    "CanonicalObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "observation_id": {
+          "title": "Observation Id",
+          "type": "string"
+        },
+        "indicator_id": {
+          "title": "Indicator Id",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        },
+        "unit": {
+          "title": "Unit",
+          "type": "string"
+        },
+        "frequency": {
+          "$ref": "#/$defs/ObservationFrequency"
+        },
+        "observed_at": {
+          "format": "date",
+          "title": "Observed At",
+          "type": "string"
+        },
+        "released_at": {
+          "format": "date-time",
+          "title": "Released At",
+          "type": "string"
+        },
+        "available_at": {
+          "format": "date-time",
+          "title": "Available At",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_revision_id": {
+          "title": "Source Revision Id",
+          "type": "string"
+        },
+        "vintage_id": {
+          "title": "Vintage Id",
+          "type": "string"
+        },
+        "normalization_rule_id": {
+          "default": "indicator.v1",
+          "title": "Normalization Rule Id",
+          "type": "string"
+        },
+        "availability_policy_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Availability Policy Id"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "quality_status": {
+          "$ref": "#/$defs/ObservationQualityStatus",
+          "default": "VALID"
+        }
+      },
+      "required": [
+        "observation_id",
+        "indicator_id",
+        "value",
+        "unit",
+        "frequency",
+        "observed_at",
+        "released_at",
+        "available_at",
+        "source_id",
+        "source_revision_id",
+        "vintage_id"
+      ],
+      "title": "CanonicalObservation",
+      "type": "object"
+    },
+    "FrequencyTransform": {
+      "additionalProperties": false,
+      "properties": {
+        "indicator_id": {
+          "title": "Indicator Id",
+          "type": "string"
+        },
+        "from_frequency": {
+          "$ref": "#/$defs/ObservationFrequency"
+        },
+        "to_frequency": {
+          "$ref": "#/$defs/ObservationFrequency"
+        },
+        "method": {
+          "title": "Method",
+          "type": "string"
+        },
+        "input_observation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Input Observation Ids",
+          "type": "array"
+        },
+        "output_observation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Output Observation Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "indicator_id",
+        "from_frequency",
+        "to_frequency",
+        "method"
+      ],
+      "title": "FrequencyTransform",
+      "type": "object"
+    },
+    "FreshnessRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "indicator_id": {
+          "title": "Indicator Id",
+          "type": "string"
+        },
+        "latest_observed_at": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latest Observed At"
+        },
+        "age_days": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Age Days"
+        },
+        "max_age_days": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Age Days"
+        },
+        "is_stale": {
+          "default": false,
+          "title": "Is Stale",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "indicator_id"
+      ],
+      "title": "FreshnessRecord",
+      "type": "object"
+    },
+    "ObservationFrequency": {
+      "enum": [
+        "DAILY",
+        "MONTHLY",
+        "QUARTERLY",
+        "ANNUAL"
+      ],
+      "title": "ObservationFrequency",
+      "type": "string"
+    },
+    "ObservationQualityStatus": {
+      "enum": [
+        "VALID",
+        "STALE",
+        "REVISED",
+        "REJECTED"
+      ],
+      "title": "ObservationQualityStatus",
+      "type": "string"
+    },
+    "OfficialCollectionStatus": {
+      "enum": [
+        "COMPLETED",
+        "MISSING",
+        "FAILED",
+        "SKIPPED"
+      ],
+      "title": "OfficialCollectionStatus",
+      "type": "string"
+    },
+    "OfficialDataStatus": {
+      "enum": [
+        "COMPLETED",
+        "PARTIAL",
+        "FAILED",
+        "SKIPPED"
+      ],
+      "title": "OfficialDataStatus",
+      "type": "string"
+    },
+    "OfficialIndicatorCollectionResult": {
+      "additionalProperties": false,
+      "properties": {
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "indicator_id": {
+          "title": "Indicator Id",
+          "type": "string"
+        },
+        "requested": {
+          "default": true,
+          "title": "Requested",
+          "type": "boolean"
+        },
+        "required": {
+          "default": false,
+          "title": "Required",
+          "type": "boolean"
+        },
+        "status": {
+          "$ref": "#/$defs/OfficialCollectionStatus"
+        },
+        "observation_count": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Observation Count",
+          "type": "integer"
+        },
+        "latest_observation_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latest Observation Id"
+        },
+        "previous_observation_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Observation Id"
+        },
+        "latest_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latest Value"
+        },
+        "previous_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Value"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        },
+        "absolute_change": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Absolute Change"
+        },
+        "percentage_change": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Percentage Change"
+        },
+        "latest_observed_at": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latest Observed At"
+        },
+        "latest_released_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latest Released At"
+        },
+        "latest_available_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latest Available At"
+        },
+        "freshness_age_days": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Freshness Age Days"
+        },
+        "freshness_max_age_days": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Freshness Max Age Days"
+        },
+        "freshness_status": {
+          "default": "MISSING",
+          "title": "Freshness Status",
+          "type": "string"
+        },
+        "failure_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Failure Code"
+        },
+        "failure_detail": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Failure Detail"
+        },
+        "missing_data_behavior": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Missing Data Behavior"
+        },
+        "metadata": {
+          "$ref": "#/$defs/OfficialIndicatorMetadata"
+        }
+      },
+      "required": [
+        "provider",
+        "indicator_id",
+        "status",
+        "metadata"
+      ],
+      "title": "OfficialIndicatorCollectionResult",
+      "type": "object"
+    },
+    "OfficialIndicatorMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "indicator_id": {
+          "title": "Indicator Id",
+          "type": "string"
+        },
+        "display_name": {
+          "title": "Display Name",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "provider_series_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Provider Series Code"
+        },
+        "feature_role": {
+          "title": "Feature Role",
+          "type": "string"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        },
+        "frequency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Frequency"
+        },
+        "max_age_days": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Age Days"
+        },
+        "transformation_method": {
+          "default": "DECAYED_CAPPED_RECENT_CHANGE_V2",
+          "title": "Transformation Method",
+          "type": "string"
+        },
+        "affected_model_dimension": {
+          "title": "Affected Model Dimension",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        }
+      },
+      "required": [
+        "indicator_id",
+        "display_name",
+        "provider",
+        "feature_role",
+        "affected_model_dimension"
+      ],
+      "title": "OfficialIndicatorMetadata",
+      "type": "object"
+    },
+    "SourceVintage": {
+      "additionalProperties": false,
+      "properties": {
+        "vintage_id": {
+          "title": "Vintage Id",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_revision_id": {
+          "title": "Source Revision Id",
+          "type": "string"
+        },
+        "revision_basis": {
+          "default": "PROVIDER",
+          "title": "Revision Basis",
+          "type": "string"
+        },
+        "retrieved_at": {
+          "format": "date-time",
+          "title": "Retrieved At",
+          "type": "string"
+        },
+        "body_hash": {
+          "title": "Body Hash",
+          "type": "string"
+        },
+        "observation_count": {
+          "minimum": 0,
+          "title": "Observation Count",
+          "type": "integer"
+        },
+        "raw_payload": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Raw Payload",
+          "type": "array"
+        }
+      },
+      "required": [
+        "vintage_id",
+        "provider",
+        "source_id",
+        "source_revision_id",
+        "retrieved_at",
+        "body_hash",
+        "observation_count"
+      ],
+      "title": "SourceVintage",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "snapshot_id": {
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "as_of_date": {
+      "format": "date",
+      "title": "As Of Date",
+      "type": "string"
+    },
+    "observations": {
+      "items": {
+        "$ref": "#/$defs/CanonicalObservation"
+      },
+      "title": "Observations",
+      "type": "array"
+    },
+    "source_vintages": {
+      "items": {
+        "$ref": "#/$defs/SourceVintage"
+      },
+      "title": "Source Vintages",
+      "type": "array"
+    },
+    "frequency_transforms": {
+      "items": {
+        "$ref": "#/$defs/FrequencyTransform"
+      },
+      "title": "Frequency Transforms",
+      "type": "array"
+    },
+    "freshness": {
+      "items": {
+        "$ref": "#/$defs/FreshnessRecord"
+      },
+      "title": "Freshness",
+      "type": "array"
+    },
+    "collection_results": {
+      "items": {
+        "$ref": "#/$defs/OfficialIndicatorCollectionResult"
+      },
+      "title": "Collection Results",
+      "type": "array"
+    },
+    "missing_indicators": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing Indicators",
+      "type": "array"
+    },
+    "provider_errors": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Provider Errors",
+      "type": "object"
+    },
+    "status": {
+      "$ref": "#/$defs/OfficialDataStatus"
+    },
+    "version": {
+      "default": "official_data_bundle.v1",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "snapshot_id",
+    "as_of_date",
+    "status"
+  ],
+  "title": "OfficialDataBundle",
+  "type": "object"
+}

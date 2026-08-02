@@ -1,0 +1,78 @@
+{
+  "$defs": {
+    "GroundedStatement": {
+      "additionalProperties": false,
+      "properties": {
+        "statement_id": {
+          "title": "Statement Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "citation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Citation Ids",
+          "type": "array"
+        },
+        "facts": {
+          "additionalProperties": true,
+          "title": "Facts",
+          "type": "object"
+        }
+      },
+      "required": [
+        "statement_id",
+        "text",
+        "citation_ids"
+      ],
+      "title": "GroundedStatement",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "summary_id": {
+      "title": "Summary Id",
+      "type": "string"
+    },
+    "result_id": {
+      "title": "Result Id",
+      "type": "string"
+    },
+    "statements": {
+      "items": {
+        "$ref": "#/$defs/GroundedStatement"
+      },
+      "title": "Statements",
+      "type": "array"
+    },
+    "validation_status": {
+      "title": "Validation Status",
+      "type": "string"
+    },
+    "validation_errors": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Validation Errors",
+      "type": "array"
+    },
+    "version": {
+      "default": "grounded_summary.v1",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "summary_id",
+    "result_id",
+    "validation_status"
+  ],
+  "title": "GroundedSummary",
+  "type": "object"
+}

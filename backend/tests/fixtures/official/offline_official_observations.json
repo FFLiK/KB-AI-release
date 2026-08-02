@@ -1,0 +1,101 @@
+{
+  "observations": [
+    {
+      "available_at": "2026-06-11T09:00:00+09:00",
+      "frequency": "MONTHLY",
+      "indicator_id": "USD_KRW",
+      "observed_at": "2026-05-01",
+      "released_at": "2026-06-10T09:00:00+09:00",
+      "retrieved_at": "2026-07-15T12:00:00+09:00",
+      "source_id": "SRC-ECOS-USD-KRW",
+      "source_revision_id": "REV-ECOS-USD-KRW-202607",
+      "unit": "KRW_PER_USD",
+      "value": "1300"
+    },
+    {
+      "available_at": "2026-07-11T09:00:00+09:00",
+      "frequency": "MONTHLY",
+      "indicator_id": "USD_KRW",
+      "observed_at": "2026-06-01",
+      "released_at": "2026-07-10T09:00:00+09:00",
+      "retrieved_at": "2026-07-15T12:00:00+09:00",
+      "source_id": "SRC-ECOS-USD-KRW",
+      "source_revision_id": "REV-ECOS-USD-KRW-202607",
+      "unit": "KRW_PER_USD",
+      "value": "1326"
+    },
+    {
+      "available_at": "2026-06-02T09:00:00+09:00",
+      "frequency": "MONTHLY",
+      "indicator_id": "BASE_RATE",
+      "observed_at": "2026-05-01",
+      "released_at": "2026-06-01T09:00:00+09:00",
+      "retrieved_at": "2026-07-15T12:00:00+09:00",
+      "source_id": "SRC-ECOS-BASE-RATE",
+      "source_revision_id": "REV-ECOS-BASE-RATE-202607",
+      "unit": "PERCENT",
+      "value": "3.0"
+    },
+    {
+      "available_at": "2026-07-02T09:00:00+09:00",
+      "frequency": "MONTHLY",
+      "indicator_id": "BASE_RATE",
+      "observed_at": "2026-06-01",
+      "released_at": "2026-07-01T09:00:00+09:00",
+      "retrieved_at": "2026-07-15T12:00:00+09:00",
+      "source_id": "SRC-ECOS-BASE-RATE",
+      "source_revision_id": "REV-ECOS-BASE-RATE-202607",
+      "unit": "PERCENT",
+      "value": "4.0"
+    },
+    {
+      "available_at": "2026-06-16T09:00:00+09:00",
+      "frequency": "MONTHLY",
+      "indicator_id": "FOOD_PRICE_INDEX",
+      "observed_at": "2026-05-01",
+      "released_at": "2026-06-15T09:00:00+09:00",
+      "retrieved_at": "2026-07-15T12:00:00+09:00",
+      "source_id": "SRC-KOSIS-FOOD-PRICE",
+      "source_revision_id": "REV-KOSIS-FOOD-PRICE-202607",
+      "unit": "INDEX_2020_100",
+      "value": "100"
+    },
+    {
+      "available_at": "2026-07-16T09:00:00+09:00",
+      "frequency": "MONTHLY",
+      "indicator_id": "FOOD_PRICE_INDEX",
+      "observed_at": "2026-06-01",
+      "released_at": "2026-07-15T09:00:00+09:00",
+      "retrieved_at": "2026-07-15T12:00:00+09:00",
+      "source_id": "SRC-KOSIS-FOOD-PRICE",
+      "source_revision_id": "REV-KOSIS-FOOD-PRICE-202607",
+      "unit": "INDEX_2020_100",
+      "value": "105"
+    },
+    {
+      "available_at": "2026-06-21T09:00:00+09:00",
+      "frequency": "MONTHLY",
+      "indicator_id": "IMPORT_UNIT_PRICE_HS090111",
+      "observed_at": "2026-05-01",
+      "released_at": "2026-06-20T09:00:00+09:00",
+      "retrieved_at": "2026-07-15T12:00:00+09:00",
+      "source_id": "SRC-CUSTOMS-HS090111",
+      "source_revision_id": "REV-CUSTOMS-HS090111-202607",
+      "unit": "USD_PER_KG",
+      "value": "10"
+    },
+    {
+      "available_at": "2026-07-21T09:00:00+09:00",
+      "frequency": "MONTHLY",
+      "indicator_id": "IMPORT_UNIT_PRICE_HS090111",
+      "observed_at": "2026-06-01",
+      "released_at": "2026-07-20T09:00:00+09:00",
+      "retrieved_at": "2026-07-15T12:00:00+09:00",
+      "source_id": "SRC-CUSTOMS-HS090111",
+      "source_revision_id": "REV-CUSTOMS-HS090111-202607",
+      "unit": "USD_PER_KG",
+      "value": "11"
+    }
+  ],
+  "snapshot_schema_version": "offline_official_fixture.v1"
+}

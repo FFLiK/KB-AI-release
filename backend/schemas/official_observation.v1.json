@@ -1,0 +1,124 @@
+{
+  "$defs": {
+    "ObservationFrequency": {
+      "enum": [
+        "DAILY",
+        "MONTHLY",
+        "QUARTERLY",
+        "ANNUAL"
+      ],
+      "title": "ObservationFrequency",
+      "type": "string"
+    },
+    "ObservationQualityStatus": {
+      "enum": [
+        "VALID",
+        "STALE",
+        "REVISED",
+        "REJECTED"
+      ],
+      "title": "ObservationQualityStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "observation_id": {
+      "title": "Observation Id",
+      "type": "string"
+    },
+    "indicator_id": {
+      "title": "Indicator Id",
+      "type": "string"
+    },
+    "value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Value"
+    },
+    "unit": {
+      "title": "Unit",
+      "type": "string"
+    },
+    "frequency": {
+      "$ref": "#/$defs/ObservationFrequency"
+    },
+    "observed_at": {
+      "format": "date",
+      "title": "Observed At",
+      "type": "string"
+    },
+    "released_at": {
+      "format": "date-time",
+      "title": "Released At",
+      "type": "string"
+    },
+    "available_at": {
+      "format": "date-time",
+      "title": "Available At",
+      "type": "string"
+    },
+    "source_id": {
+      "title": "Source Id",
+      "type": "string"
+    },
+    "source_revision_id": {
+      "title": "Source Revision Id",
+      "type": "string"
+    },
+    "vintage_id": {
+      "title": "Vintage Id",
+      "type": "string"
+    },
+    "normalization_rule_id": {
+      "default": "indicator.v1",
+      "title": "Normalization Rule Id",
+      "type": "string"
+    },
+    "availability_policy_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Availability Policy Id"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "quality_status": {
+      "$ref": "#/$defs/ObservationQualityStatus",
+      "default": "VALID"
+    }
+  },
+  "required": [
+    "observation_id",
+    "indicator_id",
+    "value",
+    "unit",
+    "frequency",
+    "observed_at",
+    "released_at",
+    "available_at",
+    "source_id",
+    "source_revision_id",
+    "vintage_id"
+  ],
+  "title": "CanonicalObservation",
+  "type": "object"
+}

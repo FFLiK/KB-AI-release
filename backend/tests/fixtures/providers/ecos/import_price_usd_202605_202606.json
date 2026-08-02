@@ -1,0 +1,29 @@
+{
+  "StatisticSearch": {
+    "list_total_count": 2,
+    "row": [
+      {
+        "DATA_VALUE": "133.57",
+        "ITEM_CODE1": "*AA",
+        "ITEM_CODE2": "D",
+        "ITEM_NAME1": "총지수",
+        "ITEM_NAME2": "달러기준",
+        "STAT_CODE": "401Y015",
+        "STAT_NAME": "수입물가지수(기본분류)",
+        "TIME": "202605",
+        "UNIT_NAME": "2020=100"
+      },
+      {
+        "DATA_VALUE": "124.58",
+        "ITEM_CODE1": "*AA",
+        "ITEM_CODE2": "D",
+        "ITEM_NAME1": "총지수",
+        "ITEM_NAME2": "달러기준",
+        "STAT_CODE": "401Y015",
+        "STAT_NAME": "수입물가지수(기본분류)",
+        "TIME": "202606",
+        "UNIT_NAME": "2020=100"
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "cafe_demo_dataset.v1",
+  "dataset_id": "cafe-gangnam-festival.v1",
+  "status": "SYNTHETIC_DEMO_ONLY",
+  "title_ko": "인근 커피거리 축제와 방문 수요 증가",
+  "disclaimer": {"synthetic": true, "must_not_be_presented_as_live": true, "network_fetch_allowed": false},
+  "research_request": {
+    "as_of_date": "2026-08-20", "forecast_start": "2026-09-01", "forecast_end": "2027-02-28",
+    "business_type_code": "FNB_CAFE", "administrative_area_codes": ["11680"], "search_radius_m": 1500
+  },
+  "discovery_replay": {
+    "provider": "synthetic-demo-search", "allowed_domains": ["demo-gangnam-office.example", "demo-gangnam-tour.example"],
+    "ordered_results": [
+      {"rank": 1, "source_id": "SRC-DEMO-GANGNAM-FESTIVAL-NOTICE", "url": "https://demo-gangnam-office.example/notices/coffee-street"},
+      {"rank": 2, "source_id": "SRC-DEMO-GANGNAM-FESTIVAL-GUIDE", "url": "https://demo-gangnam-tour.example/events/coffee-street"},
+      {"rank": 3, "source_id": "SRC-DEMO-GANGNAM-MULTI-VENUE", "url": "https://demo-gangnam-tour.example/features/autumn-events"}
+    ]
+  },
+  "source_documents": [
+    {
+      "source_id": "SRC-DEMO-GANGNAM-FESTIVAL-NOTICE", "revision_id": "REV-DEMO-GANGNAM-FESTIVAL-NOTICE-1",
+      "canonical_url": "https://demo-gangnam-office.example/notices/coffee-street", "publisher": "데모 강남구 행사운영과",
+      "title": "2026 강남 커피거리 축제 개최 안내", "demo_source_profile": "OFFICIAL_LOCAL_GOV_STYLE",
+      "published_at": "2026-08-10T09:00:00+09:00", "retrieved_at": "2026-08-20T10:00:00+09:00",
+      "body_text": "데모 강남구 행사운영과는 2026 강남 커피거리 축제를 2026년 9월 12일부터 9월 14일까지 매일 오전 11시부터 오후 9시까지 개최한다. 단일 행사 장소는 서울특별시 강남구 테헤란로 152 앞 데모 광장이며 좌표는 위도 37.5002, 경도 127.0369이다. 행사 운영계획의 예상 방문객은 3일간 18,000명이다. 이 문서는 실제 강남구 공고가 아닌 합성 데모 자료다."
+    },
+    {
+      "source_id": "SRC-DEMO-GANGNAM-FESTIVAL-GUIDE", "revision_id": "REV-DEMO-GANGNAM-FESTIVAL-GUIDE-1",
+      "canonical_url": "https://demo-gangnam-tour.example/events/coffee-street", "publisher": "데모 강남 관광안내",
+      "title": "강남 커피거리 축제 프로그램과 교통 안내", "demo_source_profile": "OFFICIAL_TOURISM_STYLE",
+      "published_at": "2026-08-12T10:00:00+09:00", "retrieved_at": "2026-08-20T10:01:00+09:00",
+      "body_text": "2026 강남 커피거리 축제는 2026년 9월 12일부터 9월 14일까지 서울특별시 강남구 테헤란로 152 앞 데모 광장에서 열린다. 행사 시간은 매일 11시부터 21시까지이며 커피 시음과 로스터리 체험을 운영한다. 행사 장소는 인근 카페 점포 좌표에서 약 70미터 떨어져 있다. 이 문서는 합성 데모 자료다."
+    },
+    {
+      "source_id": "SRC-DEMO-GANGNAM-MULTI-VENUE", "revision_id": "REV-DEMO-GANGNAM-MULTI-VENUE-1",
+      "canonical_url": "https://demo-gangnam-tour.example/features/autumn-events", "publisher": "데모 지역생활 매거진",
+      "title": "강남 일대 가을 행사 모음", "demo_source_profile": "UNVERIFIED",
+      "published_at": "2026-08-18T07:00:00+09:00", "retrieved_at": "2026-08-20T10:02:00+09:00",
+      "body_text": "2026년 9월 강남 일대 여러 광장에서 다양한 축제가 열릴 예정이다. 후보 장소는 코엑스, 강남역 광장, 양재천 산책로이며 행사별 정확한 날짜와 주소는 확인되지 않았다. 이 문서는 거절 경로를 보여주기 위한 합성 데모 자료다."
+    }
+  ],
+  "expected_pipeline": {
+    "accepted_events": [{
+      "candidate_id": "EVC-DEMO-GANGNAM-FESTIVAL-001", "domain": "LOCAL", "event_family": "LOCAL_EVENT",
+      "event_type": "LOCAL_FESTIVAL", "title": "2026 강남 커피거리 축제",
+      "temporal": {"start_raw": "2026-09-12", "end_raw": "2026-09-14", "operating_hours_raw": "11:00-21:00"},
+      "location": {"address_raw": "서울특별시 강남구 테헤란로 152 앞 데모 광장", "latitude": 37.5002, "longitude": 127.0369},
+      "impact": {"axis": "REVENUE_DEMAND", "direction": "INCREASE", "mechanism": "LOCAL_FOOT_TRAFFIC_CHANGE"},
+      "source_ids": ["SRC-DEMO-GANGNAM-FESTIVAL-NOTICE", "SRC-DEMO-GANGNAM-FESTIVAL-GUIDE"],
+      "evidence_quotes": [
+        "데모 강남구 행사운영과는 2026 강남 커피거리 축제를 2026년 9월 12일부터 9월 14일까지 매일 오전 11시부터 오후 9시까지 개최한다.",
+        "2026 강남 커피거리 축제는 2026년 9월 12일부터 9월 14일까지 서울특별시 강남구 테헤란로 152 앞 데모 광장에서 열린다."
+      ]
+    }],
+    "reference_findings": [],
+    "rejected_candidates": [{"source_id": "SRC-DEMO-GANGNAM-MULTI-VENUE", "failure_codes": ["LOCATION_AMBIGUOUS", "TEMPORAL_EVIDENCE_MISSING"]}],
+    "signal_blueprint": {"axis": "REVENUE_DEMAND", "active_months": ["2026-09"], "precomputed_financial_result": false}
+  }
+}

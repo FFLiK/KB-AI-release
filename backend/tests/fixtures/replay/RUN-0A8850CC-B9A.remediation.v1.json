@@ -1,0 +1,56 @@
+{
+  "schema_version": "final_remediation_replay.v1",
+  "run_id": "RUN-0A8850CC-B9A",
+  "as_of_date": "2026-07-21",
+  "forecast_start": "2026-08-01",
+  "baseline_repository": {
+    "commit": "ad7997262adffa9aad51aaee8f9b028e1736b67c",
+    "tracked_dirty": false,
+    "pre_existing_untracked_sha256": {
+      "RUN-15233429-398.research.v1.json": "c030e396785602218ed910832445523b1de6652ed4b7447d7f6a4e2715bdde1e",
+      "RUN-160D600E-34E.research.v1.json": "429dbe66a101430203aca945619e3bfeb3ebd1c9acffc967df070418ef26eec",
+      "RUN-69F73FE6-5D3.research.v1.json": "e55d873d6b89cd15f792ba2edba86d699ea42f9a1c291a7c3a3afcc68d16f9de",
+      "RUN-8DB58EBC-9C0.research.v1.json": "6767fe01f5268394e44b328b225a43acdaff24ccb263c591a623d1ddcbea353b"
+    }
+  },
+  "baseline_problem_outputs": {
+    "bok_reference_rate_percent": "2.1",
+    "policy_candidate_count": 5,
+    "duplicate_policy_candidate_ids": [
+      "RUN-0A-POLICY-GUARANTEE-A",
+      "RUN-0A-POLICY-GUARANTEE-B"
+    ],
+    "expired_tariff_proposal_promoted": true,
+    "financial_signal_count": 0
+  },
+  "expected_outputs": {
+    "bok_reference_rate_percent": "2.50",
+    "policy_candidate_count": 4,
+    "expired_tariff_proposal_promoted": false,
+    "financial_signal_count": 0
+  },
+  "bok_document": {
+    "source_id": "SRC-RUN-0A-BOK",
+    "revision_id": "REV-RUN-0A-BOK",
+    "canonical_url": "https://www.bok.or.kr/portal/decision/20260226",
+    "title": "Bank of Korea monetary-policy decision",
+    "body_text": "2026\ub144 2\uc6d4 26\uc77c \ud1b5\ud654\uc815\ucc45\ubc29\ud5a5\n\u25a1 2026\ub144 2\uc6d4 26\uc77c \uae08\uc735\ud1b5\ud654\uc704\uc6d0\ud68c\ub294 \ub2e4\uc74c \ud1b5\ud654\uc815\ucc45\ubc29\ud5a5 \uacb0\uc815 \uc2dc\uae4c\uc9c0 \ud55c\uad6d\uc740\ud589 \uae30\uc900\uae08\ub9ac\ub97c \ud604 \uc218\uc900(2.50%)\uc5d0\uc11c \uc720\uc9c0\ud558\uae30\ub85c \ud558\uc600\ub2e4.\n\u25a1 \uae08\ub144 \uc131\uc7a5\ub960\uc740 2.0%\ub85c \uc804\ub9dd\ub41c\ub2e4. \uc18c\ube44\uc790\ubb3c\uac00\uc640 \uadfc\uc6d0\ubb3c\uac00 \uc0c1\uc2b9\ub960\uc740 2.2% \ubc0f 2.1%\ub85c \uc804\ub9dd\ub41c\ub2e4."
+  },
+  "semantic_policy_duplicates": [
+    {
+      "candidate_id": "RUN-0A-POLICY-GUARANTEE-A",
+      "source_id": "SRC-RUN-0A-GANGNAM-SME",
+      "name": "2026\ub144 \uac15\ub0a8\uad6c \uc2e0\uc6a9\ubcf4\uc99d\uc9c0\uc6d0"
+    },
+    {
+      "candidate_id": "RUN-0A-POLICY-GUARANTEE-B",
+      "source_id": "SRC-RUN-0A-BANK-COOPERATION",
+      "name": "2026\ub144 \uac15\ub0a8\uad6c \ud2b9\ubcc4 \uc2e0\uc6a9\ubcf4\uc99d \uc9c0\uc6d0"
+    }
+  ],
+  "stale_reference": {
+    "source_id": "SRC-RUN-0A-TARIFF-PROPOSAL",
+    "title": "2024 public-comment notice for proposed 2025 quota-tariff items",
+    "body_text": "Public comment proposal published 2024-09-01 for proposed 2025 quota-tariff items. Comments closed on 2024-10-01; no adoption or implementation is confirmed."
+  }
+}

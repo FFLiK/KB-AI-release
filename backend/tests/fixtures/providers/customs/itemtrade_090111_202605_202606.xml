@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+  <header>
+    <resultCode>00</resultCode>
+    <resultMsg>NORMAL SERVICE.</resultMsg>
+  </header>
+  <body>
+    <items>
+      <item>
+        <balPayments>-80635253</balPayments>
+        <expDlr>53046</expDlr>
+        <expWgt>5055</expWgt>
+        <hsCode>0901110000</hsCode>
+        <impDlr>80688299</impDlr>
+        <impWgt>11411450</impWgt>
+        <statKor>카페인을 제거하지 않은 것</statKor>
+        <year>2026.05</year>
+      </item>
+      <item>
+        <balPayments>-90518097</balPayments>
+        <expDlr>57474</expDlr>
+        <expWgt>3579</expWgt>
+        <hsCode>0901110000</hsCode>
+        <impDlr>90575571</impDlr>
+        <impWgt>13449077</impWgt>
+        <statKor>카페인을 제거하지 않은 것</statKor>
+        <year>2026.06</year>
+      </item>
+      <item>
+        <balPayments>-171153350</balPayments>
+        <expDlr>110520</expDlr>
+        <expWgt>8634</expWgt>
+        <hsCode>-</hsCode>
+        <impDlr>171263870</impDlr>
+        <impWgt>24860527</impWgt>
+        <statKor>-</statKor>
+        <year>총계</year>
+      </item>
+    </items>
+  </body>
+</response>

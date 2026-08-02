@@ -1,0 +1,377 @@
+{
+  "$defs": {
+    "AccessStatus": {
+      "enum": [
+        "OK",
+        "UNAVAILABLE",
+        "LOGIN_REQUIRED",
+        "UNSUPPORTED_CONTENT",
+        "TOO_LARGE",
+        "BLOCKED_PRIVATE_NETWORK",
+        "DOMAIN_NOT_ALLOWED",
+        "EXTRACTION_FAILED",
+        "REDIRECT_LIMIT",
+        "REDIRECT_EXPIRED",
+        "FINAL_DOMAIN_REJECTED"
+      ],
+      "title": "AccessStatus",
+      "type": "string"
+    },
+    "DocumentPageType": {
+      "description": "How a retrieved page participates in research processing.",
+      "enum": [
+        "UNKNOWN",
+        "STRUCTURED_EVENT_LIST",
+        "EVENT_DETAIL_PAGE",
+        "EVENT_ATTACHMENT",
+        "LOCAL_NOTICE_LIST",
+        "LOCAL_NOTICE_DETAIL",
+        "NAVIGATION_ONLY",
+        "UNUSABLE_CONTENT"
+      ],
+      "title": "DocumentPageType",
+      "type": "string"
+    },
+    "SourceRole": {
+      "enum": [
+        "CENTRAL_GOVERNMENT",
+        "LOCAL_GOVERNMENT",
+        "OFFICIAL_DATA",
+        "FINANCIAL_INSTITUTION",
+        "OTHER"
+      ],
+      "title": "SourceRole",
+      "type": "string"
+    },
+    "SourceTrustLevel": {
+      "description": "Authority of a source, kept separate from the page's operational role.",
+      "enum": [
+        "OFFICIAL_TRUSTED",
+        "INSTITUTIONAL_TRUSTED",
+        "VERIFIED_MEDIA",
+        "UNVERIFIED"
+      ],
+      "title": "SourceTrustLevel",
+      "type": "string"
+    },
+    "SourceType": {
+      "enum": [
+        "OFFICIAL_PRIMARY",
+        "OFFICIAL_SECONDARY",
+        "OFFICIAL_LOCAL_GOV",
+        "FINANCIAL_INSTITUTION",
+        "MAJOR_NEWS",
+        "INDUSTRY_ASSOCIATION",
+        "OTHER"
+      ],
+      "title": "SourceType",
+      "type": "string"
+    },
+    "StructuredEventRow": {
+      "additionalProperties": false,
+      "description": "A row-bounded piece of evidence found on a structured listing.",
+      "properties": {
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "start_offset": {
+          "minimum": 0,
+          "title": "Start Offset",
+          "type": "integer"
+        },
+        "end_offset": {
+          "exclusiveMinimum": 0,
+          "title": "End Offset",
+          "type": "integer"
+        },
+        "detail_urls": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Detail Urls",
+          "type": "array"
+        }
+      },
+      "required": [
+        "text",
+        "start_offset",
+        "end_offset"
+      ],
+      "title": "StructuredEventRow",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "source_id": {
+      "title": "Source Id",
+      "type": "string"
+    },
+    "canonical_url": {
+      "title": "Canonical Url",
+      "type": "string"
+    },
+    "publisher": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Publisher"
+    },
+    "source_type": {
+      "$ref": "#/$defs/SourceType",
+      "default": "OTHER"
+    },
+    "source_trust_level": {
+      "$ref": "#/$defs/SourceTrustLevel",
+      "default": "UNVERIFIED"
+    },
+    "source_role": {
+      "$ref": "#/$defs/SourceRole",
+      "default": "OTHER"
+    },
+    "published_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Published At"
+    },
+    "retrieved_at": {
+      "format": "date-time",
+      "title": "Retrieved At",
+      "type": "string"
+    },
+    "title": {
+      "default": "",
+      "title": "Title",
+      "type": "string"
+    },
+    "raw_content_uri": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Raw Content Uri"
+    },
+    "raw_content_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Raw Content Sha256"
+    },
+    "body_text": {
+      "default": "",
+      "title": "Body Text",
+      "type": "string"
+    },
+    "body_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Body Sha256",
+      "type": "string"
+    },
+    "language": {
+      "default": "ko",
+      "title": "Language",
+      "type": "string"
+    },
+    "access_status": {
+      "$ref": "#/$defs/AccessStatus"
+    },
+    "http_status": {
+      "anyOf": [
+        {
+          "maximum": 599,
+          "minimum": 100,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Http Status"
+    },
+    "content_type": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Content Type"
+    },
+    "http_metadata": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Http Metadata",
+      "type": "object"
+    },
+    "revision_id": {
+      "title": "Revision Id",
+      "type": "string"
+    },
+    "search_snippet": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Discovery metadata only.",
+      "title": "Search Snippet"
+    },
+    "parent_source_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Parent Source Id"
+    },
+    "attachment_urls": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Attachment Urls",
+      "type": "array"
+    },
+    "detail_urls": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Detail Urls",
+      "type": "array"
+    },
+    "structured_event_rows": {
+      "items": {
+        "$ref": "#/$defs/StructuredEventRow"
+      },
+      "title": "Structured Event Rows",
+      "type": "array"
+    },
+    "page_type": {
+      "$ref": "#/$defs/DocumentPageType",
+      "default": "UNKNOWN"
+    },
+    "classification_reasons": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Classification Reasons",
+      "type": "array"
+    },
+    "security_flags": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Security Flags",
+      "type": "array"
+    },
+    "original_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Original Url"
+    },
+    "redirect_chain": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Redirect Chain",
+      "type": "array"
+    },
+    "final_url_resolved": {
+      "default": false,
+      "title": "Final Url Resolved",
+      "type": "boolean"
+    },
+    "retrieval_reason_code": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Retrieval Reason Code"
+    },
+    "snapshot_fingerprint": {
+      "anyOf": [
+        {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Snapshot Fingerprint"
+    },
+    "routing_metadata_version": {
+      "default": "routing_metadata.v1",
+      "title": "Routing Metadata Version",
+      "type": "string"
+    },
+    "schema_version": {
+      "default": "source_document.v1",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_id",
+    "canonical_url",
+    "retrieved_at",
+    "body_sha256",
+    "access_status",
+    "revision_id"
+  ],
+  "title": "SourceDocument",
+  "type": "object"
+}

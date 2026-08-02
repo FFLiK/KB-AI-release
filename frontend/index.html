@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko" data-theme="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      !(function () {
+        try {
+          var t = localStorage.getItem("kb-theme") || "system";
+          var d =
+            t === "system"
+              ? matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light"
+              : t;
+          document.documentElement.dataset.theme = d;
+          document.documentElement.style.colorScheme = d;
+        } catch (e) {}
+      })();
+    </script>
+    <title>KB AI Business Insight</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

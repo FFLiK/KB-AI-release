@@ -1,0 +1,13 @@
+version: organization_aliases.v1
+aliases:
+  "\ud55c\uad6d\uc740\ud589": ORG-BOK
+  "\ud55c\uc740": ORG-BOK
+  "Bank of Korea": ORG-BOK
+  "The Bank of Korea": ORG-BOK
+  "BOK": ORG-BOK
+  "Monetary Policy Board of the Bank of Korea": ORG-BOK
+  "\ud1b5\uacc4\uccad": ORG-KOSTAT
+  "\uc11c\uc6b8\ud2b9\ubcc4\uc2dc": ORG-SEOUL
+  "\uc11c\uc6b8\uc2dc": ORG-SEOUL
+  "\uc18c\uc0c1\uacf5\uc778\uc2dc\uc7a5\uc9c4\ud765\uacf5\ub2e8": ORG-SEMAS
+  "\uc18c\uc9c4\uacf5": ORG-SEMAS

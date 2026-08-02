@@ -1,0 +1,206 @@
+{
+  "$defs": {
+    "StoreLocation": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "minLength": 1,
+          "title": "Address",
+          "type": "string"
+        },
+        "latitude": {
+          "anyOf": [
+            {
+              "maximum": 90,
+              "minimum": -90,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latitude"
+        },
+        "longitude": {
+          "anyOf": [
+            {
+              "maximum": 180,
+              "minimum": -180,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Longitude"
+        },
+        "administrative_area": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Administrative Area"
+        },
+        "commercial_area": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Commercial Area"
+        }
+      },
+      "required": [
+        "address"
+      ],
+      "title": "StoreLocation",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "run_id": {
+      "maxLength": 48,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "as_of_date": {
+      "format": "date",
+      "title": "As Of Date",
+      "type": "string"
+    },
+    "tenant_id": {
+      "default": "default",
+      "maxLength": 64,
+      "minLength": 1,
+      "title": "Tenant Id",
+      "type": "string"
+    },
+    "forecast_start": {
+      "format": "date",
+      "title": "Forecast Start",
+      "type": "string"
+    },
+    "forecast_end": {
+      "format": "date",
+      "title": "Forecast End",
+      "type": "string"
+    },
+    "store_profile_snapshot_id": {
+      "title": "Store Profile Snapshot Id",
+      "type": "string"
+    },
+    "business_type_code": {
+      "title": "Business Type Code",
+      "type": "string"
+    },
+    "ingredient_categories": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Ingredient Categories",
+      "type": "array"
+    },
+    "platform_usage": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Platform Usage",
+      "type": "array"
+    },
+    "store_location": {
+      "$ref": "#/$defs/StoreLocation"
+    },
+    "administrative_area_codes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Administrative Area Codes",
+      "type": "array"
+    },
+    "search_radius_m": {
+      "default": 1500,
+      "maximum": 100000,
+      "minimum": 50,
+      "title": "Search Radius M",
+      "type": "integer"
+    },
+    "official_indicator_snapshot_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Official Indicator Snapshot Ids",
+      "type": "array"
+    },
+    "event_registry_version": {
+      "default": "event_types.v1",
+      "title": "Event Registry Version",
+      "type": "string"
+    },
+    "source_policy_version": {
+      "default": "source_tiers.v1",
+      "title": "Source Policy Version",
+      "type": "string"
+    },
+    "policy_search_terms": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Policy Search Terms",
+      "type": "array"
+    },
+    "required_funding_krw": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Required Funding Krw"
+    },
+    "projected_cash_burn_date": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Projected Cash Burn Date"
+    }
+  },
+  "required": [
+    "run_id",
+    "as_of_date",
+    "forecast_start",
+    "forecast_end",
+    "store_profile_snapshot_id",
+    "business_type_code",
+    "store_location"
+  ],
+  "title": "ResearchRequest",
+  "type": "object"
+}

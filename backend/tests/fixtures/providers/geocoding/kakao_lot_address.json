@@ -1,0 +1,15 @@
+{
+  "meta": {"total_count": 1},
+  "documents": [
+    {
+      "address_name": "서울특별시 강남구 역삼동 100",
+      "x": "127.0365",
+      "y": "37.5007",
+      "address": {"address_name": "서울특별시 강남구 역삼동 100"},
+      "road_address": {
+        "address_name": "서울특별시 강남구 테헤란로 152",
+        "building_name": "샘플빌딩"
+      }
+    }
+  ]
+}

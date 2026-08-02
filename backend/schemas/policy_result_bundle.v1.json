@@ -1,0 +1,988 @@
+{
+  "$defs": {
+    "AgentType": {
+      "enum": [
+        "MACRO",
+        "INDUSTRY",
+        "LOCAL_EVENT",
+        "POLICY_REGULATION"
+      ],
+      "title": "AgentType",
+      "type": "string"
+    },
+    "EligibilityCondition": {
+      "additionalProperties": false,
+      "properties": {
+        "field_path": {
+          "title": "Field Path",
+          "type": "string"
+        },
+        "operator": {
+          "title": "Operator",
+          "type": "string"
+        },
+        "expected_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expected Value"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        }
+      },
+      "required": [
+        "field_path",
+        "operator"
+      ],
+      "title": "EligibilityCondition",
+      "type": "object"
+    },
+    "EvidenceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_revision_id": {
+          "title": "Source Revision Id",
+          "type": "string"
+        },
+        "field_paths": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Field Paths",
+          "type": "array"
+        },
+        "quote": {
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "start_offset": {
+          "minimum": 0,
+          "title": "Start Offset",
+          "type": "integer"
+        },
+        "end_offset": {
+          "exclusiveMinimum": 0,
+          "title": "End Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "source_id",
+        "source_revision_id",
+        "field_paths",
+        "quote",
+        "start_offset",
+        "end_offset"
+      ],
+      "title": "EvidenceRef",
+      "type": "object"
+    },
+    "GuaranteeTerms": {
+      "additionalProperties": false,
+      "properties": {
+        "coverage_ratio": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Coverage Ratio"
+        },
+        "guarantee_fee_percent": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Guarantee Fee Percent"
+        },
+        "collateral_required": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Collateral Required"
+        }
+      },
+      "title": "GuaranteeTerms",
+      "type": "object"
+    },
+    "InterestTerms": {
+      "additionalProperties": false,
+      "properties": {
+        "annual_rate_percent": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Annual Rate Percent"
+        },
+        "rate_discount_percentage_points": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rate Discount Percentage Points"
+        }
+      },
+      "title": "InterestTerms",
+      "type": "object"
+    },
+    "PolicyCandidate": {
+      "additionalProperties": false,
+      "properties": {
+        "policy_candidate_id": {
+          "title": "Policy Candidate Id",
+          "type": "string"
+        },
+        "extractor_policy_candidate_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Extractor Policy Candidate Id"
+        },
+        "identity_fingerprint": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Identity Fingerprint"
+        },
+        "policy_merge_group_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Policy Merge Group Id"
+        },
+        "merged_policy_candidate_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Merged Policy Candidate Ids",
+          "type": "array"
+        },
+        "research_run_id": {
+          "title": "Research Run Id",
+          "type": "string"
+        },
+        "policy_type": {
+          "$ref": "#/$defs/PolicyType"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "provider_raw": {
+          "title": "Provider Raw",
+          "type": "string"
+        },
+        "purpose": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Purpose",
+          "type": "array"
+        },
+        "region_codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Region Codes",
+          "type": "array"
+        },
+        "industry_inclusions_raw": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Industry Inclusions Raw",
+          "type": "array"
+        },
+        "industry_exclusions_raw": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Industry Exclusions Raw",
+          "type": "array"
+        },
+        "limit_krw": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Limit Krw"
+        },
+        "interest_terms": {
+          "$ref": "#/$defs/InterestTerms"
+        },
+        "guarantee_terms": {
+          "$ref": "#/$defs/GuaranteeTerms"
+        },
+        "repayment_terms": {
+          "$ref": "#/$defs/RepaymentTerms"
+        },
+        "application_start": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Application Start"
+        },
+        "application_end": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Application End"
+        },
+        "budget_status": {
+          "default": "UNKNOWN",
+          "title": "Budget Status",
+          "type": "string"
+        },
+        "application_status": {
+          "default": "STATUS_UNCONFIRMED",
+          "title": "Application Status",
+          "type": "string"
+        },
+        "recommendation_failure_codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Recommendation Failure Codes",
+          "type": "array"
+        },
+        "eligibility_conditions": {
+          "items": {
+            "$ref": "#/$defs/EligibilityCondition"
+          },
+          "title": "Eligibility Conditions",
+          "type": "array"
+        },
+        "source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/EvidenceRef"
+          },
+          "minItems": 1,
+          "title": "Evidence",
+          "type": "array"
+        },
+        "supersedes_policy_candidate_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Supersedes Policy Candidate Id"
+        },
+        "notice_kind": {
+          "default": "ORIGINAL",
+          "title": "Notice Kind",
+          "type": "string"
+        },
+        "validation_status": {
+          "default": "EXTRACTED",
+          "title": "Validation Status",
+          "type": "string"
+        },
+        "validation_failure_codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Validation Failure Codes",
+          "type": "array"
+        },
+        "validation_notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Validation Notes",
+          "type": "array"
+        },
+        "source_validation_details": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Source Validation Details",
+          "type": "array"
+        },
+        "schema_version": {
+          "default": "policy_candidate.v1",
+          "title": "Schema Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "policy_candidate_id",
+        "research_run_id",
+        "policy_type",
+        "name",
+        "provider_raw",
+        "source_ids",
+        "evidence"
+      ],
+      "title": "PolicyCandidate",
+      "type": "object"
+    },
+    "PolicyEligibilityResult": {
+      "additionalProperties": false,
+      "properties": {
+        "policy_id": {
+          "title": "Policy Id",
+          "type": "string"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "policy_id",
+        "status",
+        "reason"
+      ],
+      "title": "PolicyEligibilityResult",
+      "type": "object"
+    },
+    "PolicySearchContext": {
+      "additionalProperties": false,
+      "properties": {
+        "cash_burn_date": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cash Burn Date"
+        },
+        "liquidity_risk_date": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Liquidity Risk Date"
+        },
+        "required_funding_krw": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "0",
+          "title": "Required Funding Krw"
+        },
+        "business_type_code": {
+          "title": "Business Type Code",
+          "type": "string"
+        },
+        "region_codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Region Codes",
+          "type": "array"
+        },
+        "purposes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Purposes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "business_type_code"
+      ],
+      "title": "PolicySearchContext",
+      "type": "object"
+    },
+    "PolicyStageCounts": {
+      "additionalProperties": false,
+      "properties": {
+        "extracted_candidates": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Extracted Candidates",
+          "type": "integer"
+        },
+        "reference_only_materials": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Reference Only Materials",
+          "type": "integer"
+        },
+        "validated_policies": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Validated Policies",
+          "type": "integer"
+        },
+        "closed_policies": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Closed Policies",
+          "type": "integer"
+        },
+        "eligible_policies": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Eligible Policies",
+          "type": "integer"
+        },
+        "ranked_recommendations": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Ranked Recommendations",
+          "type": "integer"
+        }
+      },
+      "title": "PolicyStageCounts",
+      "type": "object"
+    },
+    "PolicyType": {
+      "enum": [
+        "LOAN_SUPPORT",
+        "CREDIT_GUARANTEE",
+        "INTEREST_SUBSIDY",
+        "GRANT",
+        "REPAYMENT_DEFERRAL",
+        "TAX_RELIEF"
+      ],
+      "title": "PolicyType",
+      "type": "string"
+    },
+    "RankedPolicyOption": {
+      "additionalProperties": false,
+      "properties": {
+        "policy_id": {
+          "title": "Policy Id",
+          "type": "string"
+        },
+        "rank": {
+          "minimum": 1,
+          "title": "Rank",
+          "type": "integer"
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Score"
+        },
+        "reasons": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        }
+      },
+      "required": [
+        "policy_id",
+        "rank",
+        "score"
+      ],
+      "title": "RankedPolicyOption",
+      "type": "object"
+    },
+    "ReliefBenefitComparison": {
+      "additionalProperties": false,
+      "properties": {
+        "policy_id": {
+          "title": "Policy Id",
+          "type": "string"
+        },
+        "policy_name": {
+          "title": "Policy Name",
+          "type": "string"
+        },
+        "eligibility_status": {
+          "title": "Eligibility Status",
+          "type": "string"
+        },
+        "original_cash_burn_date": {
+          "default": "N/A",
+          "title": "Original Cash Burn Date",
+          "type": "string"
+        },
+        "simulated_cash_burn_date": {
+          "default": "N/A",
+          "title": "Simulated Cash Burn Date",
+          "type": "string"
+        },
+        "runway_extension_days": {
+          "default": 0,
+          "title": "Runway Extension Days",
+          "type": "integer"
+        },
+        "cumulative_interest_savings_krw": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "0",
+          "title": "Cumulative Interest Savings Krw"
+        }
+      },
+      "required": [
+        "policy_id",
+        "policy_name",
+        "eligibility_status"
+      ],
+      "title": "ReliefBenefitComparison",
+      "type": "object"
+    },
+    "RepaymentTerms": {
+      "additionalProperties": false,
+      "properties": {
+        "principal_grace_months": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Principal Grace Months"
+        },
+        "maturity_months": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maturity Months"
+        },
+        "repayment_method": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Repayment Method"
+        }
+      },
+      "title": "RepaymentTerms",
+      "type": "object"
+    },
+    "ResearchFinding": {
+      "additionalProperties": false,
+      "properties": {
+        "finding_id": {
+          "title": "Finding Id",
+          "type": "string"
+        },
+        "research_run_id": {
+          "title": "Research Run Id",
+          "type": "string"
+        },
+        "agent_type": {
+          "$ref": "#/$defs/AgentType"
+        },
+        "domain": {
+          "title": "Domain",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "relevance_summary": {
+          "title": "Relevance Summary",
+          "type": "string"
+        },
+        "temporal_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Temporal Raw"
+        },
+        "location_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Location Raw"
+        },
+        "source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "source_revision_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Revision Ids",
+          "type": "array"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/EvidenceRef"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "missing_requirements": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing Requirements",
+          "type": "array"
+        },
+        "status": {
+          "default": "REFERENCE_ONLY",
+          "title": "Status",
+          "type": "string"
+        },
+        "reason_code": {
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "recommended_follow_up": {
+          "default": "REVIEW_SOURCE",
+          "title": "Recommended Follow Up",
+          "type": "string"
+        },
+        "financial_signal_eligible": {
+          "const": false,
+          "default": false,
+          "title": "Financial Signal Eligible",
+          "type": "boolean"
+        },
+        "rate_selection_method": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rate Selection Method"
+        },
+        "rate_evidence_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rate Evidence Id"
+        },
+        "reference_freshness_status": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reference Freshness Status"
+        },
+        "reference_temporal_reason_codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reference Temporal Reason Codes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "finding_id",
+        "research_run_id",
+        "agent_type",
+        "domain",
+        "title",
+        "relevance_summary",
+        "reason_code"
+      ],
+      "title": "ResearchFinding",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "search_context": {
+      "$ref": "#/$defs/PolicySearchContext"
+    },
+    "candidates": {
+      "items": {
+        "$ref": "#/$defs/PolicyCandidate"
+      },
+      "title": "Candidates",
+      "type": "array"
+    },
+    "extracted_candidates": {
+      "items": {
+        "$ref": "#/$defs/PolicyCandidate"
+      },
+      "title": "Extracted Candidates",
+      "type": "array"
+    },
+    "eligible_recommendations": {
+      "items": {
+        "$ref": "#/$defs/RankedPolicyOption"
+      },
+      "title": "Eligible Recommendations",
+      "type": "array"
+    },
+    "reference_only_materials": {
+      "items": {
+        "$ref": "#/$defs/ResearchFinding"
+      },
+      "title": "Reference Only Materials",
+      "type": "array"
+    },
+    "validation_results": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Validation Results",
+      "type": "array"
+    },
+    "eligibility_results": {
+      "items": {
+        "$ref": "#/$defs/PolicyEligibilityResult"
+      },
+      "title": "Eligibility Results",
+      "type": "array"
+    },
+    "benefit_simulations": {
+      "items": {
+        "$ref": "#/$defs/ReliefBenefitComparison"
+      },
+      "title": "Benefit Simulations",
+      "type": "array"
+    },
+    "ranked_options": {
+      "items": {
+        "$ref": "#/$defs/RankedPolicyOption"
+      },
+      "title": "Ranked Options",
+      "type": "array"
+    },
+    "stage_counts": {
+      "$ref": "#/$defs/PolicyStageCounts"
+    },
+    "official_confirmation_required": {
+      "default": true,
+      "title": "Official Confirmation Required",
+      "type": "boolean"
+    },
+    "version": {
+      "default": "policy_result_bundle.v1",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "search_context"
+  ],
+  "title": "PolicyResultBundle",
+  "type": "object"
+}

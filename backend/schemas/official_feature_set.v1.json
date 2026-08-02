@@ -1,0 +1,540 @@
+{
+  "$defs": {
+    "IndicatorFeatureContribution": {
+      "additionalProperties": false,
+      "properties": {
+        "month": {
+          "pattern": "^\\d{4}-(0[1-9]|1[0-2])$",
+          "title": "Month",
+          "type": "string"
+        },
+        "indicator_id": {
+          "title": "Indicator Id",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "feature_role": {
+          "title": "Feature Role",
+          "type": "string"
+        },
+        "affected_model_dimension": {
+          "title": "Affected Model Dimension",
+          "type": "string"
+        },
+        "latest_observation_id": {
+          "title": "Latest Observation Id",
+          "type": "string"
+        },
+        "previous_observation_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Observation Id"
+        },
+        "latest_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Latest Value"
+        },
+        "previous_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous Value"
+        },
+        "unit": {
+          "title": "Unit",
+          "type": "string"
+        },
+        "latest_observed_at": {
+          "format": "date",
+          "title": "Latest Observed At",
+          "type": "string"
+        },
+        "latest_released_at": {
+          "format": "date-time",
+          "title": "Latest Released At",
+          "type": "string"
+        },
+        "absolute_change": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Absolute Change"
+        },
+        "relative_change": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Relative Change"
+        },
+        "capped_relative_change": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Capped Relative Change"
+        },
+        "decay_factor": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "maximum": 1.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "0.65",
+          "title": "Decay Factor"
+        },
+        "cumulative_relative_change": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "0",
+          "title": "Cumulative Relative Change"
+        },
+        "cumulative_horizon_cap": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "0.12",
+          "title": "Cumulative Horizon Cap"
+        },
+        "projection_step": {
+          "minimum": 1,
+          "title": "Projection Step",
+          "type": "integer"
+        },
+        "projected_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Projected Value"
+        },
+        "contributed_multiplier_delta": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Contributed Multiplier Delta"
+        },
+        "transformation_method": {
+          "default": "DECAYED_CAPPED_RECENT_CHANGE_V2",
+          "title": "Transformation Method",
+          "type": "string"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "source_observation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Observation Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "month",
+        "indicator_id",
+        "provider",
+        "feature_role",
+        "affected_model_dimension",
+        "latest_observation_id",
+        "latest_value",
+        "unit",
+        "latest_observed_at",
+        "latest_released_at",
+        "absolute_change",
+        "relative_change",
+        "capped_relative_change",
+        "projection_step",
+        "projected_value",
+        "contributed_multiplier_delta"
+      ],
+      "title": "IndicatorFeatureContribution",
+      "type": "object"
+    },
+    "MonthlyOfficialFeatures": {
+      "additionalProperties": false,
+      "properties": {
+        "month": {
+          "pattern": "^\\d{4}-(0[1-9]|1[0-2])$",
+          "title": "Month",
+          "type": "string"
+        },
+        "revenue_index_multiplier": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "1",
+          "title": "Revenue Index Multiplier"
+        },
+        "ingredient_cost_multiplier": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "1",
+          "title": "Ingredient Cost Multiplier"
+        },
+        "domestic_ingredient_cost_multiplier": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "1",
+          "title": "Domestic Ingredient Cost Multiplier"
+        },
+        "imported_ingredient_cost_multiplier": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "1",
+          "title": "Imported Ingredient Cost Multiplier"
+        },
+        "interest_rate_delta": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "0",
+          "title": "Interest Rate Delta"
+        },
+        "indicator_values": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ]
+          },
+          "title": "Indicator Values",
+          "type": "object"
+        },
+        "contributions": {
+          "items": {
+            "$ref": "#/$defs/IndicatorFeatureContribution"
+          },
+          "title": "Contributions",
+          "type": "array"
+        },
+        "source_observation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Observation Ids",
+          "type": "array"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assumptions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "month"
+      ],
+      "title": "MonthlyOfficialFeatures",
+      "type": "object"
+    },
+    "OfficialEventOverride": {
+      "additionalProperties": false,
+      "properties": {
+        "event_id": {
+          "title": "Event Id",
+          "type": "string"
+        },
+        "indicator_id": {
+          "title": "Indicator Id",
+          "type": "string"
+        },
+        "effective_date": {
+          "format": "date",
+          "title": "Effective Date",
+          "type": "string"
+        },
+        "event_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Event Value"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        },
+        "latest_official_observed_at": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latest Official Observed At"
+        },
+        "latest_official_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latest Official Value"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        },
+        "reason_code": {
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "synthetic_observation_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Synthetic Observation Id"
+        },
+        "source_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "source_revision_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Revision Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "event_id",
+        "indicator_id",
+        "effective_date",
+        "status",
+        "reason_code"
+      ],
+      "title": "OfficialEventOverride",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "feature_set_id": {
+      "title": "Feature Set Id",
+      "type": "string"
+    },
+    "as_of_date": {
+      "format": "date",
+      "title": "As Of Date",
+      "type": "string"
+    },
+    "months": {
+      "items": {
+        "$ref": "#/$defs/MonthlyOfficialFeatures"
+      },
+      "title": "Months",
+      "type": "array"
+    },
+    "indicator_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Indicator Ids",
+      "type": "array"
+    },
+    "source_snapshot_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Source Snapshot Id"
+    },
+    "status": {
+      "default": "COMPLETED",
+      "title": "Status",
+      "type": "string"
+    },
+    "transformation_version": {
+      "default": "official_features.v1",
+      "title": "Transformation Version",
+      "type": "string"
+    },
+    "event_overrides": {
+      "items": {
+        "$ref": "#/$defs/OfficialEventOverride"
+      },
+      "title": "Event Overrides",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "feature_set_id",
+    "as_of_date"
+  ],
+  "title": "OfficialFeatureSet",
+  "type": "object"
+}

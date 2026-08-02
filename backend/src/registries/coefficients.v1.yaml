@@ -1,0 +1,19 @@
+version: coefficients.v1
+status: STRESS_ASSUMPTION
+scenarios:
+  low_impact:
+    REVENUE_DEMAND: {beta: 0.03, lower_bound: -0.10, upper_bound: 0.10}
+    INGREDIENT_COST: {beta: 0.02, lower_bound: -0.08, upper_bound: 0.08}
+    PLATFORM_COST: {beta: 0.02, lower_bound: -0.08, upper_bound: 0.08}
+    OPERATING_COST: {beta: 0.02, lower_bound: -0.08, upper_bound: 0.08}
+    COMPETITION: {beta: 0.02, lower_bound: -0.08, upper_bound: 0.08}
+    UNCERTAINTY: {beta: 0.01, lower_bound: 0.0, upper_bound: 0.05}
+    INTEREST_COST: {beta: 0.002, lower_bound: -0.005, upper_bound: 0.005}
+  high_impact:
+    REVENUE_DEMAND: {beta: 0.08, lower_bound: -0.15, upper_bound: 0.15}
+    INGREDIENT_COST: {beta: 0.06, lower_bound: -0.15, upper_bound: 0.15}
+    PLATFORM_COST: {beta: 0.06, lower_bound: -0.15, upper_bound: 0.15}
+    OPERATING_COST: {beta: 0.05, lower_bound: -0.12, upper_bound: 0.12}
+    COMPETITION: {beta: 0.05, lower_bound: -0.12, upper_bound: 0.12}
+    UNCERTAINTY: {beta: 0.03, lower_bound: 0.0, upper_bound: 0.08}
+    INTEREST_COST: {beta: 0.005, lower_bound: -0.01, upper_bound: 0.01}

@@ -1,0 +1,29 @@
+{
+  "StatisticSearch": {
+    "list_total_count": 2,
+    "row": [
+      {
+        "DATA_VALUE": "1490.11",
+        "ITEM_CODE1": "0000001",
+        "ITEM_CODE2": "0000100",
+        "ITEM_NAME1": "원/미국달러(매매기준율)",
+        "ITEM_NAME2": "평균자료",
+        "STAT_CODE": "731Y004",
+        "STAT_NAME": "주요국 통화의 대원화환율",
+        "TIME": "202605",
+        "UNIT_NAME": "원"
+      },
+      {
+        "DATA_VALUE": "1527.3",
+        "ITEM_CODE1": "0000001",
+        "ITEM_CODE2": "0000100",
+        "ITEM_NAME1": "원/미국달러(매매기준율)",
+        "ITEM_NAME2": "평균자료",
+        "STAT_CODE": "731Y004",
+        "STAT_NAME": "주요국 통화의 대원화환율",
+        "TIME": "202606",
+        "UNIT_NAME": "원"
+      }
+    ]
+  }
+}

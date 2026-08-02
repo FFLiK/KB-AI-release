@@ -1,0 +1,430 @@
+{
+  "$defs": {
+    "Domain": {
+      "enum": [
+        "MACRO",
+        "INDUSTRY",
+        "LOCAL",
+        "POLICY"
+      ],
+      "title": "Domain",
+      "type": "string"
+    },
+    "EventImpact": {
+      "additionalProperties": false,
+      "properties": {
+        "axis": {
+          "$ref": "#/$defs/ImpactAxis"
+        },
+        "direction": {
+          "$ref": "#/$defs/ImpactDirection"
+        },
+        "mechanism": {
+          "title": "Mechanism",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "axis",
+        "direction",
+        "mechanism",
+        "evidence_ids"
+      ],
+      "title": "EventImpact",
+      "type": "object"
+    },
+    "EventType": {
+      "enum": [
+        "BASE_RATE_INCREASE",
+        "BASE_RATE_DECREASE",
+        "BASE_RATE_HOLD",
+        "KRW_DEPRECIATION",
+        "KRW_APPRECIATION",
+        "FX_VOLATILITY_ALERT",
+        "IMPORT_INPUT_PRICE_INCREASE",
+        "IMPORT_INPUT_PRICE_DECREASE",
+        "INPUT_SUPPLY_DISRUPTION",
+        "INPUT_SUPPLY_RECOVERY",
+        "OFFICIAL_OUTLOOK_UPGRADE",
+        "OFFICIAL_OUTLOOK_DOWNGRADE",
+        "FNB_DEMAND_INCREASE",
+        "FNB_DEMAND_DECREASE",
+        "INGREDIENT_SHORTAGE",
+        "INGREDIENT_SUPPLY_RECOVERY",
+        "WHOLESALE_PRICE_INCREASE",
+        "WHOLESALE_PRICE_DECREASE",
+        "PLATFORM_FEE_INCREASE",
+        "PLATFORM_FEE_DECREASE",
+        "PLATFORM_TERMS_TIGHTEN",
+        "PLATFORM_TERMS_EASE",
+        "PLATFORM_SERVICE_OUTAGE",
+        "REGULATION_TIGHTEN",
+        "REGULATION_EASE",
+        "PRODUCT_RECALL",
+        "SALES_RESTRICTION",
+        "PEDESTRIAN_FULL_CLOSURE",
+        "PEDESTRIAN_PARTIAL_CLOSURE",
+        "VEHICLE_ONLY_RESTRICTION",
+        "ROAD_FULL_CLOSURE",
+        "ROAD_PARTIAL_CLOSURE",
+        "PARKING_RESTRICTION",
+        "TRANSIT_SERVICE_DISRUPTION",
+        "TRANSIT_SERVICE_IMPROVEMENT",
+        "NEW_STATION_OPENING",
+        "LOCAL_FESTIVAL",
+        "LARGE_GATHERING_EVENT",
+        "EVENT_CANCELLED",
+        "CONSTRUCTION_START",
+        "CONSTRUCTION_SCOPE_EXPANSION",
+        "CONSTRUCTION_END",
+        "MAJOR_FACILITY_OPENING",
+        "MAJOR_FACILITY_CLOSURE",
+        "COMPETITOR_OPENING",
+        "COMPETITOR_CLOSURE",
+        "DISASTER_WARNING",
+        "EVACUATION_ORDER",
+        "ACCESS_RESTRICTION",
+        "RECOVERY_DECLARED",
+        "MINIMUM_WAGE_INCREASE",
+        "TAX_OR_FEE_INCREASE",
+        "TAX_OR_FEE_DECREASE",
+        "OPERATING_RESTRICTION",
+        "OPERATING_RESTRICTION_EASE"
+      ],
+      "title": "EventType",
+      "type": "string"
+    },
+    "EvidenceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_revision_id": {
+          "title": "Source Revision Id",
+          "type": "string"
+        },
+        "field_paths": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Field Paths",
+          "type": "array"
+        },
+        "quote": {
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "start_offset": {
+          "minimum": 0,
+          "title": "Start Offset",
+          "type": "integer"
+        },
+        "end_offset": {
+          "exclusiveMinimum": 0,
+          "title": "End Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "source_id",
+        "source_revision_id",
+        "field_paths",
+        "quote",
+        "start_offset",
+        "end_offset"
+      ],
+      "title": "EvidenceRef",
+      "type": "object"
+    },
+    "ExtractionMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "event_candidate.v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "registry_version": {
+          "default": "event_types.v1",
+          "title": "Registry Version",
+          "type": "string"
+        },
+        "model": {
+          "title": "Model",
+          "type": "string"
+        },
+        "prompt_version": {
+          "title": "Prompt Version",
+          "type": "string"
+        },
+        "reasoning_level": {
+          "default": "LOW",
+          "title": "Reasoning Level",
+          "type": "string"
+        }
+      },
+      "required": [
+        "model",
+        "prompt_version"
+      ],
+      "title": "ExtractionMetadata",
+      "type": "object"
+    },
+    "ImpactAxis": {
+      "enum": [
+        "REVENUE_DEMAND",
+        "INGREDIENT_COST",
+        "INTEREST_COST",
+        "PLATFORM_COST",
+        "OPERATING_COST",
+        "COMPETITION",
+        "UNCERTAINTY"
+      ],
+      "title": "ImpactAxis",
+      "type": "string"
+    },
+    "ImpactDirection": {
+      "enum": [
+        "INCREASE",
+        "DECREASE",
+        "HOLD",
+        "UNKNOWN"
+      ],
+      "title": "ImpactDirection",
+      "type": "string"
+    },
+    "LocationRaw": {
+      "additionalProperties": false,
+      "properties": {
+        "address_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Address Raw"
+        },
+        "area_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Area Raw"
+        },
+        "latitude": {
+          "anyOf": [
+            {
+              "maximum": 90,
+              "minimum": -90,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latitude"
+        },
+        "longitude": {
+          "anyOf": [
+            {
+              "maximum": 180,
+              "minimum": -180,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Longitude"
+        }
+      },
+      "title": "LocationRaw",
+      "type": "object"
+    },
+    "TemporalRaw": {
+      "additionalProperties": false,
+      "properties": {
+        "start_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Start Raw"
+        },
+        "end_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "End Raw"
+        },
+        "recurrence_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Recurrence Raw"
+        },
+        "operating_hours_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Operating Hours Raw"
+        }
+      },
+      "title": "TemporalRaw",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "candidate_id": {
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "research_run_id": {
+      "title": "Research Run Id",
+      "type": "string"
+    },
+    "domain": {
+      "$ref": "#/$defs/Domain"
+    },
+    "event_family": {
+      "title": "Event Family",
+      "type": "string"
+    },
+    "event_type": {
+      "$ref": "#/$defs/EventType"
+    },
+    "title": {
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "actor_org_raw": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Actor Org Raw"
+    },
+    "target_subject_raw": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Subject Raw"
+    },
+    "temporal": {
+      "$ref": "#/$defs/TemporalRaw"
+    },
+    "location": {
+      "$ref": "#/$defs/LocationRaw"
+    },
+    "affected_industries_raw": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Affected Industries Raw",
+      "type": "array"
+    },
+    "impacts": {
+      "items": {
+        "$ref": "#/$defs/EventImpact"
+      },
+      "minItems": 1,
+      "title": "Impacts",
+      "type": "array"
+    },
+    "attributes": {
+      "additionalProperties": true,
+      "title": "Attributes",
+      "type": "object"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/EvidenceRef"
+      },
+      "minItems": 1,
+      "title": "Evidence",
+      "type": "array"
+    },
+    "extraction_metadata": {
+      "$ref": "#/$defs/ExtractionMetadata"
+    }
+  },
+  "required": [
+    "candidate_id",
+    "research_run_id",
+    "domain",
+    "event_family",
+    "event_type",
+    "title",
+    "temporal",
+    "location",
+    "impacts",
+    "evidence",
+    "extraction_metadata"
+  ],
+  "title": "ExtractedEventCandidate",
+  "type": "object"
+}

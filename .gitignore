@@ -1,0 +1,81 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+!frontend/src/lib/
+!frontend/src/lib/**
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.cover
+*.py,cover
+.hypothesis/
+
+# IDE & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# Environment & Credentials
+.env
+.env.*
+!.env.example
+
+# OS & Temp
+.DS_Store
+Thumbs.db
+*.log
+tmp/
+data/
+.test-tmp/
+.pip-tmp/
+pytest-cache-files-*/
+
+# Architecture reference PDF & Large docs
+*.pdf
+system-architecture-v2*
+
+# Antigravity & Agent workspace artifacts
+.gemini/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+frontend/playwright-report*/
+frontend/test-results/
+frontend/*.tsbuildinfo

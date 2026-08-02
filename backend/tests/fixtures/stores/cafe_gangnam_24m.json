@@ -1,0 +1,464 @@
+{
+  "address": "서울특별시 강남구 테헤란로 152",
+  "annual_revenue_krw": 372000000,
+  "business_start_date": "2023-01-01",
+  "business_type_code": "FNB_CAFE",
+  "cost_exposures": {
+    "imported_ingredient_share": 0.45,
+    "variable_rate_debt_share": 0.7
+  },
+  "current_cash_krw": 15000000,
+  "employee_count": 4,
+  "fixed_cost_schedule": [],
+  "forecast_horizon_months": 6,
+  "latitude": null,
+  "loans": [
+    {
+      "annual_interest_rate": 0.063,
+      "loan_id": "LOAN-SAMPLE-001",
+      "principal_balance_krw": 80000000,
+      "rate_type": "VARIABLE",
+      "remaining_months": 24,
+      "repayment_type": "BULLET"
+    }
+  ],
+  "longitude": null,
+  "minimum_operating_cash_krw": 6000000,
+  "monthly_history": [
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 1035000
+      },
+      "month": "2024-08",
+      "revenue_krw": 29000000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3411,
+      "variable_costs": {
+        "ingredients_krw": 8410000,
+        "payment_fee_krw": 609000,
+        "platform_fee_krw": 2030000
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 900000
+      },
+      "month": "2024-09",
+      "revenue_krw": 29150000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3429,
+      "variable_costs": {
+        "ingredients_krw": 8453500,
+        "payment_fee_krw": 612150,
+        "platform_fee_krw": 2040500
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 900000
+      },
+      "month": "2024-10",
+      "revenue_krw": 29300000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3447,
+      "variable_costs": {
+        "ingredients_krw": 8497000,
+        "payment_fee_krw": 615300,
+        "platform_fee_krw": 2051000
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 900000
+      },
+      "month": "2024-11",
+      "revenue_krw": 29450000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3464,
+      "variable_costs": {
+        "ingredients_krw": 8540500,
+        "payment_fee_krw": 618450,
+        "platform_fee_krw": 2061500
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 1035000
+      },
+      "month": "2024-12",
+      "revenue_krw": 31968000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3760,
+      "variable_costs": {
+        "ingredients_krw": 9270720,
+        "payment_fee_krw": 671328,
+        "platform_fee_krw": 2237760
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 1035000
+      },
+      "month": "2025-01",
+      "revenue_krw": 27667500,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3255,
+      "variable_costs": {
+        "ingredients_krw": 8023575,
+        "payment_fee_krw": 581017,
+        "platform_fee_krw": 1936725
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 1035000
+      },
+      "month": "2025-02",
+      "revenue_krw": 27807000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3271,
+      "variable_costs": {
+        "ingredients_krw": 8064030,
+        "payment_fee_krw": 583947,
+        "platform_fee_krw": 1946490
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 900000
+      },
+      "month": "2025-03",
+      "revenue_krw": 30050000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3535,
+      "variable_costs": {
+        "ingredients_krw": 8714500,
+        "payment_fee_krw": 631050,
+        "platform_fee_krw": 2103500
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 900000
+      },
+      "month": "2025-04",
+      "revenue_krw": 30200000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3552,
+      "variable_costs": {
+        "ingredients_krw": 8758000,
+        "payment_fee_krw": 634200,
+        "platform_fee_krw": 2114000
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 900000
+      },
+      "month": "2025-05",
+      "revenue_krw": 30350000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3570,
+      "variable_costs": {
+        "ingredients_krw": 8801500,
+        "payment_fee_krw": 637350,
+        "platform_fee_krw": 2124500
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 1035000
+      },
+      "month": "2025-06",
+      "revenue_krw": 30500000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3588,
+      "variable_costs": {
+        "ingredients_krw": 8845000,
+        "payment_fee_krw": 640500,
+        "platform_fee_krw": 2135000
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 1035000
+      },
+      "month": "2025-07",
+      "revenue_krw": 30650000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3605,
+      "variable_costs": {
+        "ingredients_krw": 8888500,
+        "payment_fee_krw": 643650,
+        "platform_fee_krw": 2145500
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 1035000
+      },
+      "month": "2025-08",
+      "revenue_krw": 30800000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3623,
+      "variable_costs": {
+        "ingredients_krw": 8932000,
+        "payment_fee_krw": 646800,
+        "platform_fee_krw": 2156000
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 900000
+      },
+      "month": "2025-09",
+      "revenue_krw": 30950000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3641,
+      "variable_costs": {
+        "ingredients_krw": 8975500,
+        "payment_fee_krw": 649950,
+        "platform_fee_krw": 2166500
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 900000
+      },
+      "month": "2025-10",
+      "revenue_krw": 31100000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3658,
+      "variable_costs": {
+        "ingredients_krw": 9019000,
+        "payment_fee_krw": 653100,
+        "platform_fee_krw": 2177000
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 900000
+      },
+      "month": "2025-11",
+      "revenue_krw": 31250000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3676,
+      "variable_costs": {
+        "ingredients_krw": 9062500,
+        "payment_fee_krw": 656250,
+        "platform_fee_krw": 2187500
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 1035000
+      },
+      "month": "2025-12",
+      "revenue_krw": 33912000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3989,
+      "variable_costs": {
+        "ingredients_krw": 9834480,
+        "payment_fee_krw": 712152,
+        "platform_fee_krw": 2373840
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7500000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 1035000
+      },
+      "month": "2026-01",
+      "revenue_krw": 29341500,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3451,
+      "variable_costs": {
+        "ingredients_krw": 8509035,
+        "payment_fee_krw": 616171,
+        "platform_fee_krw": 2053905
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7900000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 1035000
+      },
+      "month": "2026-02",
+      "revenue_krw": 29481000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3468,
+      "variable_costs": {
+        "ingredients_krw": 8549490,
+        "payment_fee_krw": 619101,
+        "platform_fee_krw": 2063670
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7900000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 900000
+      },
+      "month": "2026-03",
+      "revenue_krw": 31850000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3747,
+      "variable_costs": {
+        "ingredients_krw": 9236500,
+        "payment_fee_krw": 668850,
+        "platform_fee_krw": 2229500
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7900000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 900000
+      },
+      "month": "2026-04",
+      "revenue_krw": 32000000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3764,
+      "variable_costs": {
+        "ingredients_krw": 9280000,
+        "payment_fee_krw": 672000,
+        "platform_fee_krw": 2240000
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7900000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 900000
+      },
+      "month": "2026-05",
+      "revenue_krw": 32150000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3782,
+      "variable_costs": {
+        "ingredients_krw": 9323500,
+        "payment_fee_krw": 675150,
+        "platform_fee_krw": 2250500
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7900000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 1035000
+      },
+      "month": "2026-06",
+      "revenue_krw": 32300000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3800,
+      "variable_costs": {
+        "ingredients_krw": 9367000,
+        "payment_fee_krw": 678300,
+        "platform_fee_krw": 2261000
+      }
+    },
+    {
+      "capital_expenditure_krw": 0,
+      "fixed_costs": {
+        "labor_krw": 7900000,
+        "other_krw": 600000,
+        "rent_krw": 4200000,
+        "utilities_krw": 1035000
+      },
+      "month": "2026-07",
+      "revenue_krw": 32450000,
+      "tax_cash_outflow_krw": 0,
+      "transaction_count": 3817,
+      "variable_costs": {
+        "ingredients_krw": 9410500,
+        "payment_fee_krw": 681450,
+        "platform_fee_krw": 2271500
+      }
+    }
+  ],
+  "opening_hours": null,
+  "schema_version": "store_profile.v1",
+  "store_id": "STORE-SAMPLE-CAFE-GANGNAM"
+}

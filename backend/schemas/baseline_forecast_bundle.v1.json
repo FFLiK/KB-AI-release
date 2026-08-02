@@ -1,0 +1,340 @@
+{
+  "$defs": {
+    "CandidateMetric": {
+      "additionalProperties": false,
+      "properties": {
+        "model_name": {
+          "title": "Model Name",
+          "type": "string"
+        },
+        "model_version": {
+          "title": "Model Version",
+          "type": "string"
+        },
+        "folds": {
+          "minimum": 0,
+          "title": "Folds",
+          "type": "integer"
+        },
+        "interval_coverage": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Interval Coverage"
+        },
+        "beats_simple_baseline": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Beats Simple Baseline"
+        },
+        "mae": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Mae"
+        },
+        "smape": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Smape"
+        },
+        "directional_accuracy": {
+          "anyOf": [
+            {
+              "maximum": 1.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Directional Accuracy"
+        },
+        "failed": {
+          "default": false,
+          "title": "Failed",
+          "type": "boolean"
+        },
+        "failure_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Failure Reason"
+        }
+      },
+      "required": [
+        "model_name",
+        "model_version",
+        "folds"
+      ],
+      "title": "CandidateMetric",
+      "type": "object"
+    },
+    "ForecastStatus": {
+      "enum": [
+        "COMPLETED",
+        "PARTIAL",
+        "INSUFFICIENT_DATA",
+        "FAILED"
+      ],
+      "title": "ForecastStatus",
+      "type": "string"
+    },
+    "IntervalKind": {
+      "enum": [
+        "PREDICTION_INTERVAL",
+        "ASSUMPTION_RANGE",
+        "NONE"
+      ],
+      "title": "IntervalKind",
+      "type": "string"
+    },
+    "MonthlyForecast": {
+      "additionalProperties": false,
+      "properties": {
+        "month": {
+          "pattern": "^\\d{4}-(0[1-9]|1[0-2])$",
+          "title": "Month",
+          "type": "string"
+        },
+        "point": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Point"
+        },
+        "lower": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Lower"
+        },
+        "upper": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Upper"
+        },
+        "unit": {
+          "default": "KRW",
+          "title": "Unit",
+          "type": "string"
+        },
+        "is_assumption_range": {
+          "default": false,
+          "title": "Is Assumption Range",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "month",
+        "point",
+        "lower",
+        "upper"
+      ],
+      "title": "MonthlyForecast",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "forecast_id": {
+      "title": "Forecast Id",
+      "type": "string"
+    },
+    "target": {
+      "default": "MONTHLY_REVENUE",
+      "title": "Target",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/ForecastStatus"
+    },
+    "selected_model": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Selected Model"
+    },
+    "model_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Model Version"
+    },
+    "training_start": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Training Start"
+    },
+    "training_end": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Training End"
+    },
+    "available_months": {
+      "minimum": 0,
+      "title": "Available Months",
+      "type": "integer"
+    },
+    "candidate_metrics": {
+      "items": {
+        "$ref": "#/$defs/CandidateMetric"
+      },
+      "title": "Candidate Metrics",
+      "type": "array"
+    },
+    "fallback_reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Fallback Reason"
+    },
+    "monthly_forecasts": {
+      "items": {
+        "$ref": "#/$defs/MonthlyForecast"
+      },
+      "title": "Monthly Forecasts",
+      "type": "array"
+    },
+    "interval_kind": {
+      "$ref": "#/$defs/IntervalKind",
+      "default": "NONE"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "data_snapshot_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Data Snapshot Ids",
+      "type": "array"
+    },
+    "version": {
+      "default": "baseline_forecast_bundle.v1",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "forecast_id",
+    "status",
+    "available_months"
+  ],
+  "title": "BaselineForecastBundle",
+  "type": "object"
+}

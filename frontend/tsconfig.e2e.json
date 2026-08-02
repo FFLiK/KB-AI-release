@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": ["node", "@playwright/test", "vite/client"]
+  },
+  "include": [
+    "playwright.config.ts",
+    "playwright.real.config.ts",
+    "e2e",
+    "e2e-real"
+  ]
+}

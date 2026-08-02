@@ -1,0 +1,128 @@
+{
+  "$defs": {
+    "MonthlyScenarioAdjustment": {
+      "additionalProperties": false,
+      "properties": {
+        "month": {
+          "pattern": "^\\d{4}-(0[1-9]|1[0-2])$",
+          "title": "Month",
+          "type": "string"
+        },
+        "revenue_multiplier": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "1",
+          "title": "Revenue Multiplier"
+        },
+        "variable_cost_multiplier": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "1",
+          "title": "Variable Cost Multiplier"
+        },
+        "fixed_cost_multiplier": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "1",
+          "title": "Fixed Cost Multiplier"
+        },
+        "interest_rate_delta": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "default": "0",
+          "title": "Interest Rate Delta"
+        },
+        "event_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Event Ids",
+          "type": "array"
+        },
+        "signal_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Signal Ids",
+          "type": "array"
+        },
+        "coefficient_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Coefficient Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "month"
+      ],
+      "title": "MonthlyScenarioAdjustment",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "adjustment_id": {
+      "title": "Adjustment Id",
+      "type": "string"
+    },
+    "scenario": {
+      "title": "Scenario",
+      "type": "string"
+    },
+    "months": {
+      "items": {
+        "$ref": "#/$defs/MonthlyScenarioAdjustment"
+      },
+      "title": "Months",
+      "type": "array"
+    },
+    "source_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Source Ids",
+      "type": "array"
+    },
+    "coefficient_version": {
+      "default": "coefficients.v1",
+      "title": "Coefficient Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "adjustment_id",
+    "scenario"
+  ],
+  "title": "ScenarioAdjustmentV2",
+  "type": "object"
+}

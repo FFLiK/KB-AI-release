@@ -1,0 +1,367 @@
+{
+  "accepted_events": [
+    {
+      "actor_org_id": "ORG-4D7C6804D978",
+      "actor_org_raw": "Seoul City",
+      "affected_industry_codes": [
+        "FNB"
+      ],
+      "attributes": {
+        "closure_scope": "PARTIAL"
+      },
+      "candidate_ids": [
+        "EVC-RECORDED-SEOUL-ACCESS-1"
+      ],
+      "cause_group_id": "CAUSE-B7E15207B3791797",
+      "domain": "LOCAL",
+      "end_date": "2026-09-15",
+      "event_family": "ACCESSIBILITY",
+      "event_id": "EVT-ACCAC16A7E752FD4628E509D",
+      "event_type": "PEDESTRIAN_PARTIAL_CLOSURE",
+      "evidence": [
+        {
+          "end_offset": 121,
+          "evidence_id": "EVD-RECORDED-SEOUL-ACCESS-1",
+          "field_paths": [
+            "event_type",
+            "temporal.start_raw",
+            "temporal.end_raw",
+            "impacts[0].mechanism"
+          ],
+          "quote": "Seoul City announced a partial pedestrian-path closure near the recorded Gangnam cafe from 2026-08-01 through 2026-09-15.",
+          "source_id": "SRC-RECORDED-SEOUL-ACCESS",
+          "source_revision_id": "REV-RECORDED-SEOUL-ACCESS-1",
+          "start_offset": 0
+        }
+      ],
+      "fingerprint": "accac16a7e752fd4628e509d",
+      "impacts": [
+        {
+          "axis": "REVENUE_DEMAND",
+          "direction": "DECREASE",
+          "evidence_ids": [
+            "EVD-RECORDED-SEOUL-ACCESS-1"
+          ],
+          "mechanism": "PEDESTRIAN_ACCESS_RESTRICTION"
+        }
+      ],
+      "location": {
+        "candidate_count": 0,
+        "distance_meters": 0.0,
+        "geocode_provider": "EXTRACTED_SOURCE",
+        "geocode_status": "PROVIDED",
+        "geometry_geojson": null,
+        "latitude": 37.5007,
+        "longitude": 127.0365,
+        "match_method": "PROVIDED_COORDINATES",
+        "normalized_address": "Recorded Gangnam cafe",
+        "resolution_metadata": {
+          "candidate_count": 0,
+          "configured_radius_meters": 1500,
+          "distance_meters": 0.0,
+          "match_method": "PROVIDED_COORDINATES",
+          "multi_venue_detected": false,
+          "provider": "EXTRACTED_SOURCE"
+        },
+        "text_raw": "Recorded Gangnam cafe"
+      },
+      "normalization_records": [
+        {
+          "anchor_source": null,
+          "end_offset": null,
+          "field_path": "title",
+          "normalized_value": "Partial pedestrian path closure",
+          "raw_value": "Partial pedestrian path closure",
+          "rule_id": "NFKC_WHITESPACE_V1",
+          "rule_version": "v1",
+          "source_id": null,
+          "source_revision_id": null,
+          "start_offset": null
+        },
+        {
+          "anchor_source": null,
+          "end_offset": 101,
+          "field_path": "temporal.start_raw",
+          "normalized_value": "2026-08-01",
+          "raw_value": "2026-08-01",
+          "rule_id": "ISO_DATE_V1",
+          "rule_version": "v1",
+          "source_id": null,
+          "source_revision_id": null,
+          "start_offset": 91
+        },
+        {
+          "anchor_source": null,
+          "end_offset": 120,
+          "field_path": "temporal.end_raw",
+          "normalized_value": "2026-09-15",
+          "raw_value": "2026-09-15",
+          "rule_id": "ISO_DATE_V1",
+          "rule_version": "v1",
+          "source_id": null,
+          "source_revision_id": null,
+          "start_offset": 110
+        },
+        {
+          "anchor_source": null,
+          "end_offset": null,
+          "field_path": "actor_org_raw",
+          "normalized_value": "ORG-4D7C6804D978",
+          "raw_value": "Seoul City",
+          "rule_id": "ORGANIZATION_STABLE_HASH_V1",
+          "rule_version": "v1",
+          "source_id": null,
+          "source_revision_id": null,
+          "start_offset": null
+        },
+        {
+          "anchor_source": null,
+          "end_offset": null,
+          "field_path": "affected_industries_raw",
+          "normalized_value": "FNB",
+          "raw_value": "FNB",
+          "rule_id": "FNB_INDUSTRY_MAPPING_V1",
+          "rule_version": "v1",
+          "source_id": null,
+          "source_revision_id": null,
+          "start_offset": null
+        },
+        {
+          "anchor_source": null,
+          "end_offset": null,
+          "field_path": "location",
+          "normalized_value": "Recorded Gangnam cafe",
+          "raw_value": "Recorded Gangnam cafe",
+          "rule_id": "UNIQUE_CANDIDATE_ONLY_V1",
+          "rule_version": "v1",
+          "source_id": null,
+          "source_revision_id": null,
+          "start_offset": null
+        }
+      ],
+      "registry_version": "event_types.v1",
+      "research_run_id": "ABC-C-REPLAY",
+      "schema_version": "canonical_event.v1",
+      "signal_eligibility_reason": "This event type is eligible to generate a financial signal.",
+      "signal_enabled": true,
+      "source_ids": [
+        "SRC-RECORDED-SEOUL-ACCESS"
+      ],
+      "source_revision_ids": [
+        "REV-RECORDED-SEOUL-ACCESS-1"
+      ],
+      "source_tier": "OFFICIAL_LOCAL_GOV",
+      "start_date": "2026-08-01",
+      "target_subject_id": "TARGET-8220321632F4",
+      "target_subject_raw": "Recorded Gangnam cafe access",
+      "title": "Partial pedestrian path closure",
+      "validation_failure_codes": [],
+      "validation_status": "ACCEPTED"
+    }
+  ],
+  "capture_status": "SANITIZED_DETERMINISTIC_FALLBACK",
+  "demonstration_layers": {
+    "ai_risk_ending_cash_delta_krw": -2400000,
+    "applied_signal": {
+      "event_id": "EVT-ACCAC16A7E752FD4628E509D",
+      "financial_signal_eligible": true,
+      "signal_id": "SIG-RECORDED-ACCESS-2026-08"
+    },
+    "reference_findings_change_finance": false,
+    "rejected_candidates_change_finance": false
+  },
+  "event_candidates": [
+    {
+      "actor_org_raw": "Seoul City",
+      "affected_industries_raw": [
+        "FNB"
+      ],
+      "attributes": {
+        "closure_scope": "PARTIAL"
+      },
+      "candidate_id": "EVC-RECORDED-SEOUL-ACCESS-1",
+      "domain": "LOCAL",
+      "event_family": "ACCESSIBILITY",
+      "event_type": "PEDESTRIAN_PARTIAL_CLOSURE",
+      "evidence": [
+        {
+          "end_offset": 121,
+          "evidence_id": "EVD-RECORDED-SEOUL-ACCESS-1",
+          "field_paths": [
+            "event_type",
+            "temporal.start_raw",
+            "temporal.end_raw",
+            "impacts[0].mechanism"
+          ],
+          "quote": "Seoul City announced a partial pedestrian-path closure near the recorded Gangnam cafe from 2026-08-01 through 2026-09-15.",
+          "source_id": "SRC-RECORDED-SEOUL-ACCESS",
+          "source_revision_id": "REV-RECORDED-SEOUL-ACCESS-1",
+          "start_offset": 0
+        }
+      ],
+      "extraction_metadata": {
+        "model": "recorded-contract",
+        "prompt_version": "local_event_extract.v1",
+        "reasoning_level": "LOW",
+        "registry_version": "event_types.v1",
+        "schema_version": "event_candidate.v1"
+      },
+      "impacts": [
+        {
+          "axis": "REVENUE_DEMAND",
+          "direction": "DECREASE",
+          "evidence_ids": [
+            "EVD-RECORDED-SEOUL-ACCESS-1"
+          ],
+          "mechanism": "PEDESTRIAN_ACCESS_RESTRICTION"
+        }
+      ],
+      "location": {
+        "address_raw": "Recorded Gangnam cafe",
+        "area_raw": null,
+        "latitude": 37.5007,
+        "longitude": 127.0365
+      },
+      "research_run_id": "ABC-C-REPLAY",
+      "target_subject_raw": "Recorded Gangnam cafe access",
+      "temporal": {
+        "end_raw": "2026-09-15",
+        "operating_hours_raw": null,
+        "recurrence_raw": null,
+        "start_raw": "2026-08-01"
+      },
+      "title": "Partial pedestrian path closure"
+    }
+  ],
+  "limitations": [
+    "This fixture is a deterministic contract recording, not a successful live LLM capture.",
+    "A live capture may replace it only after Gemini search and OpenAI extraction both complete."
+  ],
+  "official_fixture": {
+    "path": "tests/fixtures/official/offline_official_observations.json",
+    "sha256": "1eb796dc879fae04fc3266cb0fd8f06663b951a410b31d4329d05ee882a2e56b"
+  },
+  "policy_candidates": [
+    {
+      "name": "2026년 강남구 중소기업·소상공인 대출이자 지원사업",
+      "policy_candidate_id": "POL-GANGNAM-INTEREST-2026",
+      "provider": "강남구청",
+      "source_url": "https://www.gangnam.go.kr/board/B_000001/1076295/view.do?mid=ID05_040101",
+      "status": "REFERENCE_ONLY_RECONFIRM_LIVE"
+    }
+  ],
+  "provenance": "RECORDED_CONTRACT_NOT_LIVE",
+  "reference_findings": [
+    {
+      "financial_signal_eligible": false,
+      "finding_id": "FND-GANGNAM-POLICY-REFERENCE",
+      "reason_code": "STRICT_EVENT_TEMPORAL_AND_IMPACT_EVIDENCE_MISSING",
+      "source_url": "https://www.gangnam.go.kr/board/B_000001/1076295/view.do?mid=ID05_040101",
+      "status": "REFERENCE_ONLY",
+      "title": "2026년 강남구 중소기업·소상공인 대출이자 지원사업 안내"
+    }
+  ],
+  "rejected_candidates": [
+    {
+      "candidate_id": "EC-001",
+      "failure_codes": [
+        "DATE_PARSE_FAILED"
+      ],
+      "provenance": "RUN-7FABA7E0-B71_DIAGNOSTIC_EVIDENCE",
+      "raw_start_date": "25.1.16",
+      "signal_enabled": false,
+      "source_url": "https://mafra.go.kr/bbs/home/793/584779/download.do",
+      "title": "Cocoa international price increase"
+    }
+  ],
+  "request": {
+    "administrative_area_codes": [
+      "11680"
+    ],
+    "as_of_date": "2026-07-31",
+    "business_type_code": "FNB_CAFE",
+    "event_registry_version": "event_types.v1",
+    "forecast_end": "2027-01-31",
+    "forecast_start": "2026-08-01",
+    "ingredient_categories": [
+      "COFFEE_BEAN"
+    ],
+    "official_indicator_snapshot_ids": [
+      "USD_KRW",
+      "BASE_RATE",
+      "FOOD_PRICE_INDEX",
+      "IMPORT_UNIT_PRICE_HS090111"
+    ],
+    "platform_usage": [],
+    "policy_search_terms": [],
+    "projected_cash_burn_date": null,
+    "required_funding_krw": null,
+    "run_id": "ABC-C-REPLAY",
+    "search_radius_m": 1500,
+    "source_policy_version": "source_tiers.v1",
+    "store_location": {
+      "address": "Recorded Gangnam cafe",
+      "administrative_area": "Seoul Gangnam-gu",
+      "commercial_area": null,
+      "latitude": 37.5007,
+      "longitude": 127.0365
+    },
+    "store_profile_snapshot_id": "SNAPSHOT-PRIMARY-CAFE",
+    "tenant_id": "default"
+  },
+  "run_id": "ABC-C-REPLAY",
+  "schema_version": "integrated_replay_bundle.v1",
+  "source_documents": [
+    {
+      "access_status": "OK",
+      "attachment_urls": [],
+      "body_sha256": "28b94767d3ad0e7489f2cae9e3de73df91179f56b6be805a09fbccdb10cd97e4",
+      "body_text": "Seoul City announced a partial pedestrian-path closure near the recorded Gangnam cafe from 2026-08-01 through 2026-09-15.",
+      "canonical_url": "https://www.seoul.go.kr/recorded-contract-not-live",
+      "classification_reasons": [],
+      "content_type": "text/plain",
+      "detail_urls": [],
+      "final_url_resolved": false,
+      "http_metadata": {},
+      "http_status": 200,
+      "language": "ko",
+      "original_url": null,
+      "page_type": "UNKNOWN",
+      "parent_source_id": null,
+      "published_at": "2026-07-20T00:00:00Z",
+      "publisher": "Seoul City",
+      "raw_content_sha256": "28b94767d3ad0e7489f2cae9e3de73df91179f56b6be805a09fbccdb10cd97e4",
+      "raw_content_uri": null,
+      "redirect_chain": [],
+      "retrieval_reason_code": null,
+      "retrieved_at": "2026-07-21T00:00:00Z",
+      "revision_id": "REV-RECORDED-SEOUL-ACCESS-1",
+      "routing_metadata_version": "routing_metadata.v1",
+      "schema_version": "source_document.v1",
+      "search_snippet": null,
+      "security_flags": [],
+      "snapshot_fingerprint": "46e15ebeed266573745c9f4543b71cf942a7f26382e753caaef2c06855715aff",
+      "source_id": "SRC-RECORDED-SEOUL-ACCESS",
+      "source_role": "OTHER",
+      "source_trust_level": "UNVERIFIED",
+      "source_type": "OFFICIAL_LOCAL_GOV",
+      "structured_event_rows": [],
+      "title": "Recorded pedestrian access notice"
+    }
+  ],
+  "store_fixture": {
+    "coordinate_overrides": {
+      "latitude": "37.5007",
+      "longitude": "127.0365"
+    },
+    "path": "tests/fixtures/stores/cafe_gangnam_24m.json",
+    "sha256": "025ef342f327e62bc936c465b70d9965b8b053f7a7474d27b2121a13aeb252cb"
+  },
+  "versions": {
+    "coefficient_version": "coefficients.v1",
+    "event_registry_version": "event_types.v1",
+    "financial_calculation_version": "financial_calculation.v2",
+    "official_feature_version": "official_features.v2.decayed_capped",
+    "source_policy_version": "source_tiers.v1"
+  }
+}

@@ -1,0 +1,246 @@
+version: event_types.v1
+event_types:
+  BASE_RATE_INCREASE: &macro_interest
+    domain: MACRO
+    family: MONETARY_POLICY
+    allowed_axes: [INTEREST_COST]
+    allowed_mechanisms: [POLICY_RATE_TRANSMISSION]
+    allowed_directions: {INTEREST_COST: [INCREASE]}
+    required_attributes: []
+    temporal_policy: BOUNDED_OR_ONGOING
+    geo_policy: NATIONAL
+    severity: 0.8
+    coefficient_ids: []
+    signal_enabled: false
+  BASE_RATE_DECREASE: {<<: *macro_interest, allowed_directions: {INTEREST_COST: [DECREASE]}}
+  BASE_RATE_HOLD: {<<: *macro_interest, allowed_axes: [UNCERTAINTY], allowed_mechanisms: [POLICY_RATE_HOLD], allowed_directions: {UNCERTAINTY: [HOLD]}, signal_enabled: false, signal_disabled_reason: "BASE_RATE_HOLD is reference-only; only a validated rate change with variable-rate exposure can affect finance."}
+  KRW_DEPRECIATION: &macro_fx
+    domain: MACRO
+    family: FX_MARKET
+    allowed_axes: [INGREDIENT_COST]
+    allowed_mechanisms: [FX_IMPORT_COST_TRANSMISSION]
+    allowed_directions: {INGREDIENT_COST: [INCREASE]}
+    required_attributes: []
+    temporal_policy: BOUNDED_OR_ONGOING
+    geo_policy: NATIONAL
+    severity: 0.6
+    coefficient_ids: []
+    signal_enabled: false
+  KRW_APPRECIATION: {<<: *macro_fx, allowed_directions: {INGREDIENT_COST: [DECREASE]}}
+  FX_VOLATILITY_ALERT: {<<: *macro_fx, allowed_axes: [UNCERTAINTY], allowed_mechanisms: [FX_VOLATILITY], allowed_directions: {UNCERTAINTY: [INCREASE]}, signal_enabled: true}
+  IMPORT_INPUT_PRICE_INCREASE: &input_market
+    domain: MACRO
+    family: INPUT_MARKET
+    allowed_axes: [INGREDIENT_COST]
+    allowed_mechanisms: [IMPORT_PRICE_TRANSMISSION]
+    allowed_directions: {INGREDIENT_COST: [INCREASE]}
+    required_attributes: []
+    temporal_policy: BOUNDED_OR_ONGOING
+    geo_policy: NATIONAL
+    severity: 0.6
+    coefficient_ids: []
+    signal_enabled: false
+  IMPORT_INPUT_PRICE_DECREASE: {<<: *input_market, allowed_directions: {INGREDIENT_COST: [DECREASE]}}
+  INPUT_SUPPLY_DISRUPTION: {<<: *input_market, allowed_mechanisms: [SUPPLY_DISRUPTION], signal_enabled: true}
+  INPUT_SUPPLY_RECOVERY: {<<: *input_market, allowed_mechanisms: [SUPPLY_RECOVERY], allowed_directions: {INGREDIENT_COST: [DECREASE]}, signal_enabled: true}
+  OFFICIAL_OUTLOOK_UPGRADE: &macro_demand
+    domain: MACRO
+    family: MACRO_DEMAND
+    allowed_axes: [REVENUE_DEMAND]
+    allowed_mechanisms: [OFFICIAL_DEMAND_OUTLOOK]
+    allowed_directions: {REVENUE_DEMAND: [INCREASE]}
+    required_attributes: []
+    temporal_policy: BOUNDED_OR_ONGOING
+    geo_policy: NATIONAL
+    severity: 0.4
+    coefficient_ids: []
+    signal_enabled: true
+  OFFICIAL_OUTLOOK_DOWNGRADE: {<<: *macro_demand, allowed_directions: {REVENUE_DEMAND: [DECREASE]}}
+  FNB_DEMAND_INCREASE: &industry_demand
+    domain: INDUSTRY
+    family: INDUSTRY_DEMAND
+    allowed_axes: [REVENUE_DEMAND]
+    allowed_mechanisms: [INDUSTRY_DEMAND_CHANGE]
+    allowed_directions: {REVENUE_DEMAND: [INCREASE]}
+    required_attributes: []
+    temporal_policy: BOUNDED_OR_ONGOING
+    geo_policy: NATIONAL
+    severity: 0.5
+    coefficient_ids: []
+    signal_enabled: true
+  FNB_DEMAND_DECREASE: {<<: *industry_demand, allowed_directions: {REVENUE_DEMAND: [DECREASE]}}
+  INGREDIENT_SHORTAGE: &ingredient
+    domain: INDUSTRY
+    family: INGREDIENT_SUPPLY
+    allowed_axes: [INGREDIENT_COST]
+    allowed_mechanisms: [SUPPLY_DISRUPTION]
+    allowed_directions: {INGREDIENT_COST: [INCREASE]}
+    required_attributes: []
+    temporal_policy: BOUNDED_OR_ONGOING
+    geo_policy: NATIONAL
+    severity: 0.7
+    coefficient_ids: []
+    signal_enabled: true
+  INGREDIENT_SUPPLY_RECOVERY: {<<: *ingredient, allowed_mechanisms: [SUPPLY_RECOVERY], allowed_directions: {INGREDIENT_COST: [DECREASE]}}
+  WHOLESALE_PRICE_INCREASE:
+    <<: *ingredient
+    allowed_mechanisms: [WHOLESALE_PRICE_CHANGE]
+    signal_enabled: false
+    signal_disabled_reason: >-
+      Wholesale price levels are represented by official price indicators when available;
+      this event type is kept as research evidence to avoid double-counting the same price movement.
+  WHOLESALE_PRICE_DECREASE:
+    <<: *ingredient
+    allowed_mechanisms: [WHOLESALE_PRICE_CHANGE]
+    allowed_directions: {INGREDIENT_COST: [DECREASE]}
+    signal_enabled: false
+    signal_disabled_reason: >-
+      Wholesale price levels are represented by official price indicators when available;
+      this event type is kept as research evidence to avoid double-counting the same price movement.
+  PLATFORM_FEE_INCREASE: &platform
+    domain: INDUSTRY
+    family: PLATFORM_TERMS
+    allowed_axes: [PLATFORM_COST]
+    allowed_mechanisms: [PLATFORM_FEE_CHANGE]
+    allowed_directions: {PLATFORM_COST: [INCREASE]}
+    required_attributes: [platform_name]
+    temporal_policy: BOUNDED_OR_ONGOING
+    geo_policy: NATIONAL
+    severity: 0.7
+    coefficient_ids: []
+    signal_enabled: true
+  PLATFORM_FEE_DECREASE: {<<: *platform, allowed_directions: {PLATFORM_COST: [DECREASE]}}
+  PLATFORM_TERMS_TIGHTEN: {<<: *platform, allowed_mechanisms: [PLATFORM_TERMS_CHANGE]}
+  PLATFORM_TERMS_EASE: {<<: *platform, allowed_mechanisms: [PLATFORM_TERMS_CHANGE], allowed_directions: {PLATFORM_COST: [DECREASE]}}
+  PLATFORM_SERVICE_OUTAGE: {<<: *platform, allowed_axes: [REVENUE_DEMAND], allowed_mechanisms: [PLATFORM_OUTAGE], allowed_directions: {REVENUE_DEMAND: [DECREASE]}}
+  REGULATION_TIGHTEN: &industry_reg
+    domain: INDUSTRY
+    family: INDUSTRY_REGULATION
+    allowed_axes: [OPERATING_COST]
+    allowed_mechanisms: [REGULATORY_COMPLIANCE_CHANGE]
+    allowed_directions: {OPERATING_COST: [INCREASE]}
+    required_attributes: []
+    temporal_policy: BOUNDED_OR_ONGOING
+    geo_policy: NATIONAL
+    severity: 0.6
+    coefficient_ids: []
+    signal_enabled: true
+  REGULATION_EASE: {<<: *industry_reg, allowed_directions: {OPERATING_COST: [DECREASE]}}
+  PRODUCT_RECALL: {<<: *industry_reg, allowed_axes: [INGREDIENT_COST], allowed_mechanisms: [PRODUCT_RECALL], allowed_directions: {INGREDIENT_COST: [INCREASE]}, required_attributes: [product_name]}
+  SALES_RESTRICTION: {<<: *industry_reg, allowed_axes: [REVENUE_DEMAND], allowed_mechanisms: [SALES_RESTRICTION], allowed_directions: {REVENUE_DEMAND: [DECREASE]}}
+  PEDESTRIAN_FULL_CLOSURE: &access
+    domain: LOCAL
+    family: ACCESSIBILITY
+    allowed_axes: [REVENUE_DEMAND]
+    allowed_mechanisms: [PEDESTRIAN_ACCESS_RESTRICTION]
+    allowed_directions: {REVENUE_DEMAND: [DECREASE]}
+    required_attributes: [closure_scope]
+    temporal_policy: BOUNDED_OR_ONGOING
+    geo_policy: LOCATION_REQUIRED
+    severity: 1.0
+    coefficient_ids: [COEF-ACCESS-FNB-v1]
+    signal_enabled: true
+  PEDESTRIAN_PARTIAL_CLOSURE: {<<: *access, severity: 0.7}
+  VEHICLE_ONLY_RESTRICTION: {<<: *access, allowed_mechanisms: [VEHICLE_ACCESS_RESTRICTION], severity: 0.4}
+  ROAD_FULL_CLOSURE: {<<: *access, allowed_mechanisms: [ROAD_ACCESS_RESTRICTION]}
+  ROAD_PARTIAL_CLOSURE: {<<: *access, allowed_mechanisms: [ROAD_ACCESS_RESTRICTION], severity: 0.7}
+  PARKING_RESTRICTION: {<<: *access, allowed_mechanisms: [PARKING_ACCESS_RESTRICTION], severity: 0.5}
+  TRANSIT_SERVICE_DISRUPTION: &transit
+    domain: LOCAL
+    family: TRANSIT
+    allowed_axes: [REVENUE_DEMAND]
+    allowed_mechanisms: [TRANSIT_ACCESS_CHANGE]
+    allowed_directions: {REVENUE_DEMAND: [DECREASE]}
+    required_attributes: []
+    temporal_policy: BOUNDED_OR_ONGOING
+    geo_policy: LOCATION_REQUIRED
+    severity: 0.7
+    coefficient_ids: [COEF-ACCESS-FNB-v1]
+    signal_enabled: true
+  TRANSIT_SERVICE_IMPROVEMENT: {<<: *transit, allowed_directions: {REVENUE_DEMAND: [INCREASE]}}
+  NEW_STATION_OPENING: {<<: *transit, allowed_mechanisms: [NEW_TRANSIT_ACCESS], allowed_directions: {REVENUE_DEMAND: [INCREASE]}}
+  LOCAL_FESTIVAL: &local_event
+    domain: LOCAL
+    family: LOCAL_EVENT
+    allowed_axes: [REVENUE_DEMAND]
+    allowed_mechanisms: [LOCAL_FOOT_TRAFFIC_CHANGE]
+    allowed_directions: {REVENUE_DEMAND: [INCREASE]}
+    required_attributes: []
+    temporal_policy: BOUNDED
+    geo_policy: LOCATION_REQUIRED
+    severity: 0.6
+    coefficient_ids: [COEF-ACCESS-FNB-v1]
+    signal_enabled: true
+  LARGE_GATHERING_EVENT: {<<: *local_event}
+  EVENT_CANCELLED: {<<: *local_event, allowed_directions: {REVENUE_DEMAND: [DECREASE]}}
+  CONSTRUCTION_START: &construction
+    domain: LOCAL
+    family: CONSTRUCTION
+    allowed_axes: [REVENUE_DEMAND]
+    allowed_mechanisms: [CONSTRUCTION_ACCESS_IMPACT]
+    allowed_directions: {REVENUE_DEMAND: [DECREASE]}
+    required_attributes: []
+    temporal_policy: BOUNDED_OR_ONGOING
+    geo_policy: LOCATION_REQUIRED
+    severity: 0.7
+    coefficient_ids: [COEF-ACCESS-FNB-v1]
+    signal_enabled: true
+  CONSTRUCTION_SCOPE_EXPANSION: {<<: *construction, severity: 0.9}
+  CONSTRUCTION_END: {<<: *construction, allowed_mechanisms: [CONSTRUCTION_ACCESS_RECOVERY], allowed_directions: {REVENUE_DEMAND: [INCREASE]}, severity: 0.5}
+  MAJOR_FACILITY_OPENING: &facility
+    domain: LOCAL
+    family: LOCAL_FACILITY
+    allowed_axes: [REVENUE_DEMAND]
+    allowed_mechanisms: [LOCAL_FOOT_TRAFFIC_CHANGE]
+    allowed_directions: {REVENUE_DEMAND: [INCREASE]}
+    required_attributes: []
+    temporal_policy: ONGOING
+    geo_policy: LOCATION_REQUIRED
+    severity: 0.6
+    coefficient_ids: [COEF-ACCESS-FNB-v1]
+    signal_enabled: true
+  MAJOR_FACILITY_CLOSURE: {<<: *facility, allowed_directions: {REVENUE_DEMAND: [DECREASE]}}
+  COMPETITOR_OPENING: &competition
+    domain: LOCAL
+    family: COMPETITION
+    allowed_axes: [COMPETITION]
+    allowed_mechanisms: [COMPETITOR_COUNT_CHANGE]
+    allowed_directions: {COMPETITION: [INCREASE]}
+    required_attributes: [business_type]
+    temporal_policy: ONGOING
+    geo_policy: LOCATION_REQUIRED
+    severity: 0.5
+    coefficient_ids: []
+    signal_enabled: true
+  COMPETITOR_CLOSURE: {<<: *competition, allowed_directions: {COMPETITION: [DECREASE]}}
+  DISASTER_WARNING: &disaster
+    domain: LOCAL
+    family: DISASTER
+    allowed_axes: [UNCERTAINTY]
+    allowed_mechanisms: [DISASTER_AREA_IMPACT]
+    allowed_directions: {UNCERTAINTY: [INCREASE]}
+    required_attributes: []
+    temporal_policy: BOUNDED_OR_ONGOING
+    geo_policy: ADMINISTRATIVE_AREA
+    severity: 0.5
+    coefficient_ids: []
+    signal_enabled: true
+  EVACUATION_ORDER: {<<: *disaster, allowed_axes: [REVENUE_DEMAND], allowed_directions: {REVENUE_DEMAND: [DECREASE]}, severity: 1.0}
+  ACCESS_RESTRICTION: {<<: *disaster, allowed_axes: [REVENUE_DEMAND], allowed_directions: {REVENUE_DEMAND: [DECREASE]}, severity: 0.9}
+  RECOVERY_DECLARED: {<<: *disaster, allowed_axes: [REVENUE_DEMAND], allowed_mechanisms: [DISASTER_RECOVERY], allowed_directions: {REVENUE_DEMAND: [INCREASE]}}
+  MINIMUM_WAGE_INCREASE: &policy
+    domain: POLICY
+    family: POLICY_REGULATION
+    allowed_axes: [OPERATING_COST]
+    allowed_mechanisms: [REGULATORY_COST_CHANGE]
+    allowed_directions: {OPERATING_COST: [INCREASE]}
+    required_attributes: []
+    temporal_policy: ONGOING
+    geo_policy: NATIONAL
+    severity: 0.8
+    coefficient_ids: []
+    signal_enabled: false
+  TAX_OR_FEE_INCREASE: {<<: *policy}
+  TAX_OR_FEE_DECREASE: {<<: *policy, allowed_directions: {OPERATING_COST: [DECREASE]}}
+  OPERATING_RESTRICTION: {<<: *policy, allowed_axes: [REVENUE_DEMAND], allowed_mechanisms: [OPERATING_RESTRICTION], allowed_directions: {REVENUE_DEMAND: [DECREASE]}}
+  OPERATING_RESTRICTION_EASE: {<<: *policy, allowed_axes: [REVENUE_DEMAND], allowed_mechanisms: [OPERATING_RESTRICTION], allowed_directions: {REVENUE_DEMAND: [INCREASE]}}

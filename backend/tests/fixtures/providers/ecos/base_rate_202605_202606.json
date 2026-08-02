@@ -1,0 +1,27 @@
+{
+  "StatisticSearch": {
+    "list_total_count": 2,
+    "row": [
+      {
+        "DATA_VALUE": "2.5",
+        "ITEM_CODE1": "0101000",
+        "ITEM_CODE2": null,
+        "ITEM_NAME1": "한국은행 기준금리",
+        "STAT_CODE": "722Y001",
+        "STAT_NAME": "한국은행 기준금리 및 여수신금리",
+        "TIME": "202605",
+        "UNIT_NAME": "연%"
+      },
+      {
+        "DATA_VALUE": "2.5",
+        "ITEM_CODE1": "0101000",
+        "ITEM_CODE2": null,
+        "ITEM_NAME1": "한국은행 기준금리",
+        "STAT_CODE": "722Y001",
+        "STAT_NAME": "한국은행 기준금리 및 여수신금리",
+        "TIME": "202606",
+        "UNIT_NAME": "연%"
+      }
+    ]
+  }
+}

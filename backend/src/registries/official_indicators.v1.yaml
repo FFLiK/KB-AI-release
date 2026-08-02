@@ -1,0 +1,70 @@
+version: official_indicators.v1
+indicators:
+  CUSTOMS_IMPORT_UNIT_PRICE_USD_PER_KG_HS0901110000:
+    provider: CUSTOMS
+    indicator_id: CUSTOMS_IMPORT_UNIT_PRICE_USD_PER_KG_HS0901110000
+    provider_series_code: ITEMTRADE:090111
+    frequency: MONTHLY
+    unit: USD_PER_KG
+    release_policy: PROVIDER_DOES_NOT_RETURN_EXACT_RELEASE_TIMESTAMP
+    availability_policy: CUSTOMS_MONTH_END_PLUS_25D_APPROX.v1
+    availability_is_approximation: true
+    max_age_days: 120
+    feature_role: IMPORTED_INGREDIENT_COST
+    aggregation: ALL_ORIGIN_COUNTRIES
+    revision_policy: CONTENT_HASHED_MONTHLY_VINTAGE
+  BASE_RATE:
+    provider: ECOS
+    indicator_id: BASE_RATE
+    provider_series_code: "722Y001:0101000"
+    frequency: MONTHLY
+    unit: PERCENT
+    release_policy: ECOS_RESPONSE_HAS_NO_RELEASE_TIMESTAMP
+    availability_policy: ECOS_MONTH_END_PLUS_10D_APPROX.v1
+    availability_lag_days: 10
+    availability_is_approximation: true
+    max_age_days: 90
+    feature_role: INTEREST_RATE
+    revision_policy: CONTENT_HASHED_MONTHLY_VINTAGE
+  USD_KRW:
+    provider: ECOS
+    indicator_id: USD_KRW
+    provider_series_code: "731Y004:0000001:0000100"
+    frequency: MONTHLY
+    unit: KRW_PER_USD
+    release_policy: ECOS_RESPONSE_HAS_NO_RELEASE_TIMESTAMP
+    availability_policy: ECOS_MONTH_END_PLUS_10D_APPROX.v1
+    availability_lag_days: 10
+    availability_is_approximation: true
+    max_age_days: 90
+    feature_role: IMPORTED_INGREDIENT_COST
+    measure: MONTHLY_AVERAGE
+    revision_policy: CONTENT_HASHED_MONTHLY_VINTAGE
+  IMPORT_PRICE_INDEX_USD:
+    provider: ECOS
+    indicator_id: IMPORT_PRICE_INDEX_USD
+    provider_series_code: "401Y015:*AA:D"
+    frequency: MONTHLY
+    unit: INDEX_2020_100
+    release_policy: ECOS_RESPONSE_HAS_NO_RELEASE_TIMESTAMP
+    availability_policy: ECOS_MONTH_END_PLUS_20D_APPROX.v1
+    availability_lag_days: 20
+    availability_is_approximation: true
+    max_age_days: 120
+    feature_role: IMPORTED_INGREDIENT_COST
+    measure: TOTAL_INDEX_USD_BASIS
+    revision_policy: CONTENT_HASHED_MONTHLY_VINTAGE
+  CONSUMER_PRICE_INDEX:
+    provider: KOSIS
+    indicator_id: CONSUMER_PRICE_INDEX
+    provider_series_code: "101:DT_1J22003:T:NATIONAL"
+    frequency: MONTHLY
+    unit: INDEX_2020_100
+    provider_unit_label: "2020=100"
+    release_policy: KOSIS_LAST_CHANGE_DATE_USED_AS_RELEASE_DATE_PROXY
+    availability_policy: KOSIS_LAST_CHANGE_DATE_AS_AVAILABILITY.v1
+    availability_is_approximation: true
+    max_age_days: 120
+    feature_role: DOMESTIC_INGREDIENT_COST
+    measure: NATIONAL_ALL_ITEMS_CPI
+    revision_policy: CONTENT_HASHED_MONTHLY_VINTAGE

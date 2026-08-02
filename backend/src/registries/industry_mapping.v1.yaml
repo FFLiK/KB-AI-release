@@ -1,0 +1,9 @@
+version: industry_mapping.v1
+mappings:
+  "\uc74c\uc2dd\uc810": [FNB, FNB_RESTAURANT]
+  "\uc2dd\ub2f9": [FNB, FNB_RESTAURANT]
+  "\uce74\ud398": [FNB, FNB_CAFE]
+  "\ucee4\ud53c": [FNB, FNB_CAFE]
+  "\uc81c\uacfc\uc810": [FNB, FNB_BAKERY]
+  FNB: [FNB]
+relevance: {direct: 1.0, parent: 0.7, indirect: 0.3, unrelated: 0.0}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "cafe_demo_dataset.v1",
+  "dataset_id": "cafe-import-cost-shock.v1",
+  "status": "SYNTHETIC_DEMO_ONLY",
+  "title_ko": "원두 공급 차질과 납품단가 상승",
+  "disclaimer": {"synthetic": true, "must_not_be_presented_as_live": true, "network_fetch_allowed": false},
+  "research_request": {
+    "as_of_date": "2026-07-29", "forecast_start": "2026-08-01", "forecast_end": "2027-01-31",
+    "business_type_code": "FNB_CAFE", "ingredient_categories": ["COFFEE_BEAN"],
+    "administrative_area_codes": ["11680"], "search_radius_m": 1500
+  },
+  "discovery_replay": {
+    "provider": "synthetic-demo-search", "allowed_domains": ["demo-coffee-news.example", "demo-coffee-association.example"],
+    "ordered_results": [
+      {"rank": 1, "source_id": "SRC-DEMO-COFFEE-COST-NEWS", "url": "https://demo-coffee-news.example/arabica-delay"},
+      {"rank": 2, "source_id": "SRC-DEMO-COFFEE-COST-BULLETIN", "url": "https://demo-coffee-association.example/arrivals"},
+      {"rank": 3, "source_id": "SRC-DEMO-COFFEE-TREND-REFERENCE", "url": "https://demo-coffee-news.example/menu-survey"}
+    ]
+  },
+  "source_documents": [
+    {
+      "source_id": "SRC-DEMO-COFFEE-COST-NEWS", "revision_id": "REV-DEMO-COFFEE-COST-NEWS-2",
+      "canonical_url": "https://demo-coffee-news.example/arabica-delay", "publisher": "데모 커피경제 뉴스룸",
+      "title": "아라비카 입고 지연, 7월부터 카페 납품단가 조정", "demo_source_profile": "VERIFIED_MEDIA_STYLE",
+      "published_at": "2026-06-20T09:00:00+09:00", "retrieved_at": "2026-06-23T10:00:00+09:00",
+      "body_text": "데모 커피경제 뉴스룸은 브라질 산지의 가뭄과 선적 지연으로 국내 수입업체의 2026년 7월부터 12월까지 아라비카 원두 공급량이 기존 계약 대비 18% 감소할 전망이라고 보도했다. 조사 대상 납품업체들은 2026년 7월 1일부터 카페용 아라비카 원두 납품단가를 평균 12% 인상할 예정이라고 밝혔다. 공급 정상화 예상 시점은 2027년 1월 1일이다. 이 문서는 실제 기사가 아닌 합성 데모 자료다."
+    },
+    {
+      "source_id": "SRC-DEMO-COFFEE-COST-BULLETIN", "revision_id": "REV-DEMO-COFFEE-COST-BULLETIN-2",
+      "canonical_url": "https://demo-coffee-association.example/arrivals", "publisher": "데모 커피수입 유통협회",
+      "title": "2026년 7~12월 원두 입고 예정 물량 안내", "demo_source_profile": "INDUSTRY_ASSOCIATION_STYLE",
+      "published_at": "2026-06-22T11:00:00+09:00", "retrieved_at": "2026-06-23T10:01:00+09:00",
+      "body_text": "데모 커피수입 유통협회 회원사 계약 집계 결과 2026년 7월부터 12월까지 아라비카 생두 입고 예정 물량은 정상 계약 물량보다 18% 적다. 지연 물량은 2027년 1월부터 순차 입고될 예정이며 회원사는 2026년 7월 1일부터 12월 31일까지 한시적인 공급 조정이 필요하다고 안내했다. 이 문서는 합성 데모 자료다."
+    },
+    {
+      "source_id": "SRC-DEMO-COFFEE-TREND-REFERENCE", "revision_id": "REV-DEMO-COFFEE-TREND-REFERENCE-1",
+      "canonical_url": "https://demo-coffee-news.example/menu-survey", "publisher": "데모 카페 트렌드 연구소",
+      "title": "여름철 콜드브루 선호도 조사", "demo_source_profile": "REFERENCE_ONLY_STYLE",
+      "published_at": "2026-07-20T08:00:00+09:00", "retrieved_at": "2026-07-21T10:02:00+09:00",
+      "body_text": "데모 설문에서 응답자의 43%가 여름철 콜드브루 메뉴를 선호한다고 답했다. 조사에는 가격 변화 적용 시점이나 점포별 원가 변화, 강남구 카페 매출과의 인과 근거가 포함되지 않았다. 이 문서는 실제 조사 결과가 아닌 합성 데모 자료다."
+    }
+  ],
+  "expected_pipeline": {
+    "accepted_events": [{
+      "candidate_id": "EVC-DEMO-COFFEE-SUPPLY-001", "domain": "INDUSTRY", "event_family": "INGREDIENT_SUPPLY",
+      "event_type": "INGREDIENT_SHORTAGE", "title": "2026년 7~12월 아라비카 원두 공급 차질",
+      "temporal": {"start_raw": "2026-07-01", "end_raw": "2026-12-31"},
+      "location": {},
+      "impact": {"axis": "INGREDIENT_COST", "direction": "INCREASE", "mechanism": "SUPPLY_DISRUPTION"},
+      "source_ids": ["SRC-DEMO-COFFEE-COST-NEWS", "SRC-DEMO-COFFEE-COST-BULLETIN"],
+      "evidence_quotes": [
+        "조사 대상 납품업체들은 2026년 7월 1일부터 카페용 아라비카 원두 납품단가를 평균 12% 인상할 예정이라고 밝혔다.",
+        "데모 커피수입 유통협회 회원사 계약 집계 결과 2026년 7월부터 12월까지 아라비카 생두 입고 예정 물량은 정상 계약 물량보다 18% 적다."
+      ]
+    }],
+    "reference_findings": [{
+      "source_id": "SRC-DEMO-COFFEE-TREND-REFERENCE", "reason_code": "INSUFFICIENT_IMPACT_EVIDENCE",
+      "summary_ko": "콜드브루 선호도는 참고할 수 있지만 점포 원가 영향과 적용 기간의 근거가 부족하다."
+    }],
+    "rejected_candidates": [],
+    "signal_blueprint": {"axis": "INGREDIENT_COST", "active_months": ["2026-07", "2026-08", "2026-09", "2026-10", "2026-11", "2026-12"], "precomputed_financial_result": false}
+  }
+}

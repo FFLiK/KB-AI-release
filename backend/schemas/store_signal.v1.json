@@ -1,0 +1,149 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "signal_id": {
+      "title": "Signal Id",
+      "type": "string"
+    },
+    "event_id": {
+      "title": "Event Id",
+      "type": "string"
+    },
+    "source_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Source Ids",
+      "type": "array"
+    },
+    "store_id": {
+      "title": "Store Id",
+      "type": "string"
+    },
+    "month": {
+      "title": "Month",
+      "type": "string"
+    },
+    "impact_axis": {
+      "title": "Impact Axis",
+      "type": "string"
+    },
+    "direction": {
+      "maximum": 1,
+      "minimum": -1,
+      "title": "Direction",
+      "type": "integer"
+    },
+    "evidence_score": {
+      "anyOf": [
+        {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Evidence Score"
+    },
+    "exposure_score": {
+      "anyOf": [
+        {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Exposure Score"
+    },
+    "severity_score": {
+      "anyOf": [
+        {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Severity Score"
+    },
+    "time_decay": {
+      "anyOf": [
+        {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Time Decay"
+    },
+    "raw_signal": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Raw Signal"
+    },
+    "coefficient_id": {
+      "title": "Coefficient Id",
+      "type": "string"
+    },
+    "coefficient_status": {
+      "title": "Coefficient Status",
+      "type": "string"
+    },
+    "cause_group_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cause Group Id"
+    },
+    "calculation_version": {
+      "default": "store_signal.v1",
+      "title": "Calculation Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "signal_id",
+    "event_id",
+    "source_ids",
+    "store_id",
+    "month",
+    "impact_axis",
+    "direction",
+    "evidence_score",
+    "exposure_score",
+    "severity_score",
+    "time_decay",
+    "raw_signal",
+    "coefficient_id",
+    "coefficient_status"
+  ],
+  "title": "StoreSignal",
+  "type": "object"
+}

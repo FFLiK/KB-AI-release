@@ -1,0 +1,647 @@
+{
+  "$defs": {
+    "CanonicalLocation": {
+      "additionalProperties": false,
+      "properties": {
+        "text_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text Raw"
+        },
+        "normalized_address": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Normalized Address"
+        },
+        "latitude": {
+          "anyOf": [
+            {
+              "maximum": 90,
+              "minimum": -90,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latitude"
+        },
+        "longitude": {
+          "anyOf": [
+            {
+              "maximum": 180,
+              "minimum": -180,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Longitude"
+        },
+        "geometry_geojson": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Geometry Geojson"
+        },
+        "geocode_status": {
+          "default": "NOT_REQUIRED",
+          "title": "Geocode Status",
+          "type": "string"
+        },
+        "geocode_provider": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Geocode Provider"
+        },
+        "match_method": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Match Method"
+        },
+        "distance_meters": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Distance Meters"
+        },
+        "candidate_count": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Candidate Count",
+          "type": "integer"
+        },
+        "resolution_metadata": {
+          "additionalProperties": true,
+          "title": "Resolution Metadata",
+          "type": "object"
+        }
+      },
+      "title": "CanonicalLocation",
+      "type": "object"
+    },
+    "Domain": {
+      "enum": [
+        "MACRO",
+        "INDUSTRY",
+        "LOCAL",
+        "POLICY"
+      ],
+      "title": "Domain",
+      "type": "string"
+    },
+    "EventImpact": {
+      "additionalProperties": false,
+      "properties": {
+        "axis": {
+          "$ref": "#/$defs/ImpactAxis"
+        },
+        "direction": {
+          "$ref": "#/$defs/ImpactDirection"
+        },
+        "mechanism": {
+          "title": "Mechanism",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "axis",
+        "direction",
+        "mechanism",
+        "evidence_ids"
+      ],
+      "title": "EventImpact",
+      "type": "object"
+    },
+    "EventType": {
+      "enum": [
+        "BASE_RATE_INCREASE",
+        "BASE_RATE_DECREASE",
+        "BASE_RATE_HOLD",
+        "KRW_DEPRECIATION",
+        "KRW_APPRECIATION",
+        "FX_VOLATILITY_ALERT",
+        "IMPORT_INPUT_PRICE_INCREASE",
+        "IMPORT_INPUT_PRICE_DECREASE",
+        "INPUT_SUPPLY_DISRUPTION",
+        "INPUT_SUPPLY_RECOVERY",
+        "OFFICIAL_OUTLOOK_UPGRADE",
+        "OFFICIAL_OUTLOOK_DOWNGRADE",
+        "FNB_DEMAND_INCREASE",
+        "FNB_DEMAND_DECREASE",
+        "INGREDIENT_SHORTAGE",
+        "INGREDIENT_SUPPLY_RECOVERY",
+        "WHOLESALE_PRICE_INCREASE",
+        "WHOLESALE_PRICE_DECREASE",
+        "PLATFORM_FEE_INCREASE",
+        "PLATFORM_FEE_DECREASE",
+        "PLATFORM_TERMS_TIGHTEN",
+        "PLATFORM_TERMS_EASE",
+        "PLATFORM_SERVICE_OUTAGE",
+        "REGULATION_TIGHTEN",
+        "REGULATION_EASE",
+        "PRODUCT_RECALL",
+        "SALES_RESTRICTION",
+        "PEDESTRIAN_FULL_CLOSURE",
+        "PEDESTRIAN_PARTIAL_CLOSURE",
+        "VEHICLE_ONLY_RESTRICTION",
+        "ROAD_FULL_CLOSURE",
+        "ROAD_PARTIAL_CLOSURE",
+        "PARKING_RESTRICTION",
+        "TRANSIT_SERVICE_DISRUPTION",
+        "TRANSIT_SERVICE_IMPROVEMENT",
+        "NEW_STATION_OPENING",
+        "LOCAL_FESTIVAL",
+        "LARGE_GATHERING_EVENT",
+        "EVENT_CANCELLED",
+        "CONSTRUCTION_START",
+        "CONSTRUCTION_SCOPE_EXPANSION",
+        "CONSTRUCTION_END",
+        "MAJOR_FACILITY_OPENING",
+        "MAJOR_FACILITY_CLOSURE",
+        "COMPETITOR_OPENING",
+        "COMPETITOR_CLOSURE",
+        "DISASTER_WARNING",
+        "EVACUATION_ORDER",
+        "ACCESS_RESTRICTION",
+        "RECOVERY_DECLARED",
+        "MINIMUM_WAGE_INCREASE",
+        "TAX_OR_FEE_INCREASE",
+        "TAX_OR_FEE_DECREASE",
+        "OPERATING_RESTRICTION",
+        "OPERATING_RESTRICTION_EASE"
+      ],
+      "title": "EventType",
+      "type": "string"
+    },
+    "EvidenceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_revision_id": {
+          "title": "Source Revision Id",
+          "type": "string"
+        },
+        "field_paths": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Field Paths",
+          "type": "array"
+        },
+        "quote": {
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "start_offset": {
+          "minimum": 0,
+          "title": "Start Offset",
+          "type": "integer"
+        },
+        "end_offset": {
+          "exclusiveMinimum": 0,
+          "title": "End Offset",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "source_id",
+        "source_revision_id",
+        "field_paths",
+        "quote",
+        "start_offset",
+        "end_offset"
+      ],
+      "title": "EvidenceRef",
+      "type": "object"
+    },
+    "ImpactAxis": {
+      "enum": [
+        "REVENUE_DEMAND",
+        "INGREDIENT_COST",
+        "INTEREST_COST",
+        "PLATFORM_COST",
+        "OPERATING_COST",
+        "COMPETITION",
+        "UNCERTAINTY"
+      ],
+      "title": "ImpactAxis",
+      "type": "string"
+    },
+    "ImpactDirection": {
+      "enum": [
+        "INCREASE",
+        "DECREASE",
+        "HOLD",
+        "UNKNOWN"
+      ],
+      "title": "ImpactDirection",
+      "type": "string"
+    },
+    "NormalizationRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "field_path": {
+          "title": "Field Path",
+          "type": "string"
+        },
+        "raw_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Raw Value"
+        },
+        "normalized_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Normalized Value"
+        },
+        "rule_id": {
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "rule_version": {
+          "default": "v1",
+          "title": "Rule Version",
+          "type": "string"
+        },
+        "source_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Id"
+        },
+        "source_revision_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Revision Id"
+        },
+        "start_offset": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Start Offset"
+        },
+        "end_offset": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "End Offset"
+        },
+        "anchor_source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Anchor Source"
+        }
+      },
+      "required": [
+        "field_path",
+        "raw_value",
+        "normalized_value",
+        "rule_id"
+      ],
+      "title": "NormalizationRecord",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "event_id": {
+      "title": "Event Id",
+      "type": "string"
+    },
+    "candidate_ids": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Candidate Ids",
+      "type": "array"
+    },
+    "research_run_id": {
+      "title": "Research Run Id",
+      "type": "string"
+    },
+    "domain": {
+      "$ref": "#/$defs/Domain"
+    },
+    "event_family": {
+      "title": "Event Family",
+      "type": "string"
+    },
+    "event_type": {
+      "$ref": "#/$defs/EventType"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "actor_org_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Actor Org Id"
+    },
+    "actor_org_raw": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Actor Org Raw"
+    },
+    "target_subject_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Subject Id"
+    },
+    "target_subject_raw": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Subject Raw"
+    },
+    "start_date": {
+      "format": "date",
+      "title": "Start Date",
+      "type": "string"
+    },
+    "end_date": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "End Date"
+    },
+    "location": {
+      "$ref": "#/$defs/CanonicalLocation"
+    },
+    "affected_industry_codes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Affected Industry Codes",
+      "type": "array"
+    },
+    "impacts": {
+      "items": {
+        "$ref": "#/$defs/EventImpact"
+      },
+      "minItems": 1,
+      "title": "Impacts",
+      "type": "array"
+    },
+    "attributes": {
+      "additionalProperties": true,
+      "title": "Attributes",
+      "type": "object"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/EvidenceRef"
+      },
+      "minItems": 1,
+      "title": "Evidence",
+      "type": "array"
+    },
+    "source_ids": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Source Ids",
+      "type": "array"
+    },
+    "source_revision_ids": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Source Revision Ids",
+      "type": "array"
+    },
+    "source_tier": {
+      "title": "Source Tier",
+      "type": "string"
+    },
+    "validation_status": {
+      "title": "Validation Status",
+      "type": "string"
+    },
+    "validation_failure_codes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Validation Failure Codes",
+      "type": "array"
+    },
+    "normalization_records": {
+      "items": {
+        "$ref": "#/$defs/NormalizationRecord"
+      },
+      "minItems": 1,
+      "title": "Normalization Records",
+      "type": "array"
+    },
+    "fingerprint": {
+      "title": "Fingerprint",
+      "type": "string"
+    },
+    "cause_group_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cause Group Id"
+    },
+    "signal_enabled": {
+      "default": true,
+      "title": "Signal Enabled",
+      "type": "boolean"
+    },
+    "signal_eligibility_reason": {
+      "default": "Event type is eligible to generate a financial signal.",
+      "title": "Signal Eligibility Reason",
+      "type": "string"
+    },
+    "schema_version": {
+      "default": "canonical_event.v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "registry_version": {
+      "default": "event_types.v1",
+      "title": "Registry Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "event_id",
+    "candidate_ids",
+    "research_run_id",
+    "domain",
+    "event_family",
+    "event_type",
+    "title",
+    "start_date",
+    "location",
+    "impacts",
+    "evidence",
+    "source_ids",
+    "source_revision_ids",
+    "source_tier",
+    "validation_status",
+    "normalization_records",
+    "fingerprint"
+  ],
+  "title": "CanonicalEvent",
+  "type": "object"
+}

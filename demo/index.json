@@ -1,0 +1,8 @@
+{
+  "schema_version": "cafe_demo_catalog.v1",
+  "status": "SYNTHETIC_DEMO_ONLY",
+  "datasets": [
+    {"dataset_id": "cafe-gangnam-festival.v1", "file": "datasets/cafe-gangnam-festival.v1.json"},
+    {"dataset_id": "cafe-import-cost-shock.v1", "file": "datasets/cafe-import-cost-shock.v1.json"}
+  ]
+}

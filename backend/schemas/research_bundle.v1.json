@@ -1,0 +1,722 @@
+{
+  "$defs": {
+    "AccessFailure": {
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "detail": {
+          "title": "Detail",
+          "type": "string"
+        },
+        "retryable": {
+          "default": false,
+          "title": "Retryable",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "url",
+        "code",
+        "detail"
+      ],
+      "title": "AccessFailure",
+      "type": "object"
+    },
+    "AgentType": {
+      "enum": [
+        "MACRO",
+        "INDUSTRY",
+        "LOCAL_EVENT",
+        "POLICY_REGULATION"
+      ],
+      "title": "AgentType",
+      "type": "string"
+    },
+    "DocumentResearchOutcome": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "source_revision_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Revision Id"
+        },
+        "agent_type": {
+          "$ref": "#/$defs/AgentType"
+        },
+        "status": {
+          "$ref": "#/$defs/DocumentResearchStatus"
+        },
+        "reason_codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "final_url_resolved": {
+          "default": false,
+          "title": "Final Url Resolved",
+          "type": "boolean"
+        },
+        "usable_for_extraction": {
+          "default": false,
+          "title": "Usable For Extraction",
+          "type": "boolean"
+        },
+        "extraction_attempted": {
+          "default": false,
+          "title": "Extraction Attempted",
+          "type": "boolean"
+        },
+        "candidate_count": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Candidate Count",
+          "type": "integer"
+        },
+        "finding_count": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Finding Count",
+          "type": "integer"
+        },
+        "input_tokens": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Input Tokens"
+        },
+        "latency_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Latency Ms"
+        },
+        "body_characters": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Body Characters",
+          "type": "integer"
+        },
+        "truncated": {
+          "default": false,
+          "title": "Truncated",
+          "type": "boolean"
+        },
+        "page_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page Type"
+        },
+        "classification_reasons": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Classification Reasons",
+          "type": "array"
+        },
+        "snapshot_fingerprint": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Snapshot Fingerprint"
+        },
+        "routing_metadata_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Routing Metadata Version"
+        }
+      },
+      "required": [
+        "source_id",
+        "agent_type",
+        "status"
+      ],
+      "title": "DocumentResearchOutcome",
+      "type": "object"
+    },
+    "DocumentResearchStatus": {
+      "enum": [
+        "CANDIDATES_EXTRACTED",
+        "REFERENCE_FINDINGS_ONLY",
+        "NO_DISCRETE_EVENT",
+        "INSUFFICIENT_TEMPORAL_EVIDENCE",
+        "INSUFFICIENT_IMPACT_EVIDENCE",
+        "OUTSIDE_FORECAST_CONTEXT",
+        "SOURCE_CONTENT_UNUSABLE",
+        "PROVIDER_ERROR",
+        "DUPLICATE_SOURCE",
+        "STRUCTURED_LIST_TRAVERSED"
+      ],
+      "title": "DocumentResearchStatus",
+      "type": "string"
+    },
+    "ModelCallRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "call_id": {
+          "title": "Call Id",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "model": {
+          "title": "Model",
+          "type": "string"
+        },
+        "reasoning_level": {
+          "$ref": "#/$defs/ReasoningLevel"
+        },
+        "request_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request Id"
+        },
+        "prompt_version": {
+          "title": "Prompt Version",
+          "type": "string"
+        },
+        "schema_version": {
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "registry_version": {
+          "title": "Registry Version",
+          "type": "string"
+        },
+        "input_tokens": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Input Tokens",
+          "type": "integer"
+        },
+        "output_tokens": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Output Tokens",
+          "type": "integer"
+        },
+        "cached_tokens": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Cached Tokens",
+          "type": "integer"
+        },
+        "search_query_count": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Search Query Count",
+          "type": "integer"
+        },
+        "latency_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Latency Ms",
+          "type": "integer"
+        },
+        "estimated_cost": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Estimated Cost"
+        },
+        "cost_status": {
+          "default": "RATE_NOT_CONFIGURED",
+          "title": "Cost Status",
+          "type": "string"
+        },
+        "retry_count": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Retry Count",
+          "type": "integer"
+        },
+        "validation_result": {
+          "title": "Validation Result",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "call_id",
+        "provider",
+        "model",
+        "reasoning_level",
+        "prompt_version",
+        "schema_version",
+        "registry_version",
+        "validation_result",
+        "created_at"
+      ],
+      "title": "ModelCallRecord",
+      "type": "object"
+    },
+    "ProviderFailureDetail": {
+      "additionalProperties": false,
+      "properties": {
+        "stage": {
+          "title": "Stage",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model"
+        },
+        "document_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Document Id"
+        },
+        "http_status": {
+          "anyOf": [
+            {
+              "maximum": 599,
+              "minimum": 100,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Http Status"
+        },
+        "error_type": {
+          "title": "Error Type",
+          "type": "string"
+        },
+        "error_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error Code"
+        },
+        "parameter": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parameter"
+        },
+        "request_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Request Id"
+        },
+        "retryable": {
+          "default": false,
+          "title": "Retryable",
+          "type": "boolean"
+        },
+        "retry_attempted": {
+          "default": false,
+          "title": "Retry Attempted",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "stage",
+        "provider",
+        "error_type"
+      ],
+      "title": "ProviderFailureDetail",
+      "type": "object"
+    },
+    "ReasoningLevel": {
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ],
+      "title": "ReasoningLevel",
+      "type": "string"
+    },
+    "ResearchExecutionDiagnostics": {
+      "additionalProperties": false,
+      "properties": {
+        "discovered_hit_count": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Discovered Hit Count",
+          "type": "integer"
+        },
+        "fetched_document_count": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Fetched Document Count",
+          "type": "integer"
+        },
+        "usable_document_count": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Usable Document Count",
+          "type": "integer"
+        },
+        "timeout_stage": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Timeout Stage"
+        },
+        "operation_timeout_counts": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "title": "Operation Timeout Counts",
+          "type": "object"
+        },
+        "partial_output_counts": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "title": "Partial Output Counts",
+          "type": "object"
+        },
+        "configured_limits": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Configured Limits",
+          "type": "object"
+        },
+        "elapsed_time_ms_by_stage": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "title": "Elapsed Time Ms By Stage",
+          "type": "object"
+        },
+        "skipped_counts": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "title": "Skipped Counts",
+          "type": "object"
+        },
+        "cancellation_requested": {
+          "default": false,
+          "title": "Cancellation Requested",
+          "type": "boolean"
+        }
+      },
+      "title": "ResearchExecutionDiagnostics",
+      "type": "object"
+    },
+    "ResearchRunStatus": {
+      "enum": [
+        "QUEUED",
+        "RUNNING",
+        "COMPLETED",
+        "PARTIAL",
+        "FAILED"
+      ],
+      "title": "ResearchRunStatus",
+      "type": "string"
+    },
+    "SearchQueryRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "query_id": {
+          "title": "Query Id",
+          "type": "string"
+        },
+        "query": {
+          "title": "Query",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "model": {
+          "title": "Model",
+          "type": "string"
+        },
+        "reasoning_level": {
+          "$ref": "#/$defs/ReasoningLevel"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "status": {
+          "default": "COMPLETED",
+          "title": "Status",
+          "type": "string"
+        },
+        "failure_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Failure Code"
+        },
+        "retry_count": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Retry Count",
+          "type": "integer"
+        },
+        "provider_response_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Provider Response Id"
+        },
+        "allowed_domains": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Allowed Domains",
+          "type": "array"
+        },
+        "result_order": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Result Order",
+          "type": "array"
+        }
+      },
+      "required": [
+        "query_id",
+        "query",
+        "provider",
+        "model",
+        "reasoning_level",
+        "created_at"
+      ],
+      "title": "SearchQueryRecord",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "research_run_id": {
+      "title": "Research Run Id",
+      "type": "string"
+    },
+    "agent_type": {
+      "$ref": "#/$defs/AgentType"
+    },
+    "status": {
+      "$ref": "#/$defs/ResearchRunStatus"
+    },
+    "search_queries": {
+      "items": {
+        "$ref": "#/$defs/SearchQueryRecord"
+      },
+      "title": "Search Queries",
+      "type": "array"
+    },
+    "source_document_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Source Document Ids",
+      "type": "array"
+    },
+    "event_candidate_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Event Candidate Ids",
+      "type": "array"
+    },
+    "policy_candidate_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Policy Candidate Ids",
+      "type": "array"
+    },
+    "access_failures": {
+      "items": {
+        "$ref": "#/$defs/AccessFailure"
+      },
+      "title": "Access Failures",
+      "type": "array"
+    },
+    "no_result_reasons": {
+      "items": {
+        "type": "string"
+      },
+      "title": "No Result Reasons",
+      "type": "array"
+    },
+    "model_call_records": {
+      "items": {
+        "$ref": "#/$defs/ModelCallRecord"
+      },
+      "title": "Model Call Records",
+      "type": "array"
+    },
+    "document_outcomes": {
+      "items": {
+        "$ref": "#/$defs/DocumentResearchOutcome"
+      },
+      "title": "Document Outcomes",
+      "type": "array"
+    },
+    "provider_failures": {
+      "items": {
+        "$ref": "#/$defs/ProviderFailureDetail"
+      },
+      "title": "Provider Failures",
+      "type": "array"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    },
+    "diagnostics": {
+      "$ref": "#/$defs/ResearchExecutionDiagnostics"
+    }
+  },
+  "required": [
+    "research_run_id",
+    "agent_type",
+    "status"
+  ],
+  "title": "ResearchBundle",
+  "type": "object"
+}

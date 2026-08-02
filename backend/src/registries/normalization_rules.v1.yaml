@@ -1,0 +1,10 @@
+version: normalization_rules.v1
+rules:
+  text: NFKC_WHITESPACE_V1
+  date_absolute: KO_DATE_ABSOLUTE_V1
+  date_relative: KO_DATE_RELATIVE_PUBLISHED_AT_V1
+  amount: KO_KRW_UNIT_V1
+  percentage: KO_PERCENT_V1
+  organization: ORGANIZATION_ALIAS_V1
+  industry: FNB_INDUSTRY_MAPPING_V1
+  geocode: UNIQUE_CANDIDATE_ONLY_V1
